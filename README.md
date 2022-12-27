@@ -1,6 +1,6 @@
 <br>
 
-<p align="center"><a href="http://canopus-edu.herokuapp.com/" target="_blank"><img src="public/imgs/logo1.png" width="500"></a></p>
+<p align="center"><img src="/imgs/logo.png" width="500"></p>
 
 ### <p align="center">Per Aspera Ad Astra</p>
 
@@ -36,7 +36,7 @@ Dalam pengembangannya, Canopus menggunakan bahasa, perangkat lunak bantuan, sert
 - **[Laragon](https://laragon.org/)**
   <br>
   <br>
-  <a href="https://laravel.com"><img src="https://cdn.cdnlogo.com/logos/l/23/laravel.svg" width="80" height="80"></a>
+  <a href="https://laravel.com"><img src="https://seeklogo.com/vector-logo/321806/next-js" width="80" height="80"></a>
   <a href="https://tailwindcss.com/"><img src="https://cdn.cdnlogo.com/logos/t/58/tailwind-css.svg" width="80" height="80"></a>
   <a href="https://figma.com/"><img src="https://cdn.cdnlogo.com/logos/f/43/figma.svg" width="80" height="80"></a>
   <a href="https://code.visualstudio.com/"><img src="https://cdn.cdnlogo.com/logos/v/82/visual-studio-code.svg" width="80" height="80"></a>
