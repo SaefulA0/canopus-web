@@ -36,7 +36,7 @@ Dalam pengembangannya, Canopus menggunakan bahasa, perangkat lunak bantuan, sert
 - **[Laragon](https://laragon.org/)**
   <br>
   <br>
-  <a href="https://nextjs.org/"><img src="https://cdn.cdnlogo.com/logos/n/80/next-js.svg"></a>
+  <a href="https://nextjs.org/"><img src="https://cdn.cdnlogo.com/logos/n/80/next-js.svg" width="80" height="80"></a>
   <a href="https://tailwindcss.com/"><img src="https://cdn.cdnlogo.com/logos/t/58/tailwind-css.svg" width="80" height="80"></a>
   <a href="https://figma.com/"><img src="https://cdn.cdnlogo.com/logos/f/43/figma.svg" width="80" height="80"></a>
   <a href="https://code.visualstudio.com/"><img src="https://cdn.cdnlogo.com/logos/v/82/visual-studio-code.svg" width="80" height="80"></a>
