@@ -8,7 +8,19 @@ module.exports = {
     "./public/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        heroBG: "url(../public/background/bg-home.png)",
+      },
+    },
+    colors: {
+      mainColor: "#282F6A",
+      secondColor: "#FF9636",
+      thirdColor: "#50568D",
+    },
+    fontFamily: {
+      Poppins: ["Poppins"],
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
