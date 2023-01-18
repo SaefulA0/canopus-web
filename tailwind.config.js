@@ -10,13 +10,16 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        heroBG: "url(../public/background/bg-home.png)",
+        heroBG: "url(../public/imgs/background/bg-home.png)",
+        homeAboutBG: "url(../public/imgs/background/bg-home2.png)",
+        homeForumBG: "url(../public/imgs/astroMod/astro-forum3.png)",
       },
     },
     colors: {
       mainColor: "#282F6A",
       secondColor: "#FF9636",
       thirdColor: "#50568D",
+      textMainColor: "#F6F6F6",
     },
     fontFamily: {
       Poppins: ["Poppins"],
