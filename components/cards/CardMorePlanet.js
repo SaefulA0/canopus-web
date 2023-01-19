@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function CardMorePlanet() {
     return (
         <>
-        <div className="flex flex-wrap justify-center gap-7">
+        <div className="flex flex-wrap justify-center gap-7 pb-40">
                 <div className="relative z-10 shadow-md cursor-pointer h-56 border-4 border-white rounded-xl">
                         <p className="absolute top-4 right-14 font-normal text-sm text-opacity-40 text-white">Jarak:</p>
                         <p className="absolute top-9 right-5 font-normal text-sm text-opacity-40 text-white">Kamu disini</p>
