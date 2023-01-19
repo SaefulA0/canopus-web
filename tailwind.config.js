@@ -8,7 +8,25 @@ module.exports = {
     "./public/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        heroBG: "url(../public/imgs/background/bg-home.png)",
+        homeAboutBG: "url(../public/imgs/background/bg-about1.png)",
+        homeAboutBG2: "url(../public/imgs/background/bg-about2.png)",
+        homeForumBG: "url(../public/imgs/astroMod/astro-forum3.png)",
+        homeAbout2BG: "url(../public/imgs/background/bg-home2.png)",
+        contentBG: "url(../public/imgs/background/bg-konten.png)",
+      },
+    },
+    colors: {
+      mainColor: "#282F6A",
+      secondColor: "#FF9636",
+      thirdColor: "#50568D",
+      textMainColor: "#F6F6F6",
+    },
+    fontFamily: {
+      Poppins: ["Poppins"],
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
