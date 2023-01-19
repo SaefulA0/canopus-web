@@ -11,7 +11,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         heroBG: "url(../public/imgs/background/bg-home.png)",
-        homeAboutBG: "url(../public/imgs/background/bg-home2.png)",
+        homeAboutBG: "url(../public/imgs/background/bg-about1.png)",
+        homeAboutBG2: "url(../public/imgs/background/bg-about2.png)",
+        homeForumBG: "url(../public/imgs/astroMod/astro-forum3.png)",
+        homeAbout2BG: "url(../public/imgs/background/bg-home2.png)",
         contentBG: "url(../public/imgs/background/bg-konten.png)",
       },
     },
