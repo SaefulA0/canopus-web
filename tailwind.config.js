@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        morePlanet: "url(../public/imgs/background/bg-konten.png)",
         heroBG: "url(../public/imgs/background/bg-home.png)",
         homeAboutBG: "url(../public/imgs/background/bg-home2.png)",
         homeForumBG: "url(../public/imgs/astroMod/astro-forum3.png)",
