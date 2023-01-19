@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/layout";
 
-export default function Beranda() {
+export default function beranda() {
   return (
     <Layout title="Beranda">
       <main>
