@@ -1,7 +1,7 @@
 import Layout from "../../components/layout";
 import Link from "next/link";
 import Image from "next/image";
-import CardMorePlanet from "../../components/CardMorePlanet";
+import CardMorePlanet from "../../components/cards/CardMorePlanet";
 
 export default function Planet() {
   return (
@@ -41,17 +41,12 @@ export default function Planet() {
           </div>
           {/* Section list */}
           <div class="text-center pt-32">
-              <h1 class="text-3xl  font-bold text-white underline">Planet</h1>
+              <h1 class="text-3xl pb-10 font-bold text-white underline">Planet</h1>
           </div>
           <div className="container w-full mx-auto">
-          {/* subheader */}
-          <div>
-              <h1 class="text-center text-2xl font-bold text-white pb-6">Bumi</h1>
-          </div>
               {/* Card */}
-            <div className="px-10 justify-center">
-              <CardMorePlanet
-              />
+            <div>
+              <CardMorePlanet/>
             </div>
           </div>
         </section>
