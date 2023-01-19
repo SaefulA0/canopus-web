@@ -7,7 +7,7 @@ export default function Planet() {
   return (
     <Layout title="Daftar Planet">
       <main>
-        <section className="min-h-screen bg-morePlanet bg-cover items-center justify-center">
+        <section className="min-h-screen bg-planetBG bg-cover items-center justify-center">
           <div className="container w-full mx-auto pt-32">
             <div className="flex flex-row">
               <div className="basis-1/3"></div>
