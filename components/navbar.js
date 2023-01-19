@@ -9,7 +9,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed px-5 py-3 w-full text-textMainColor body-font bg-gradient-to-b from-gray-900/60">
+      <header className="fixed z-50 px-5 py-3 w-full text-textMainColor body-font bg-gradient-to-b from-gray-900">
         <div className="relative w-full mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <Link
             rel="preload"
