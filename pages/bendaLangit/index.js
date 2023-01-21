@@ -114,7 +114,6 @@ export default function BendaLangit() {
                 <CardkontenRasBintang/>
             </div>
           </div>
-          
         </section>
       </main>
     </Layout>
