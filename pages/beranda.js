@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import Layout from "../components/layout";
 import CarouselHome from "../components/carousels/carouselHome";
 
-export default function beranda() {
+export default function beranda({ dataContent, ytIdVideo }) {
   return (
     <Layout title="Beranda">
       <main>
@@ -41,7 +41,7 @@ export default function beranda() {
         </section>
         {/* pembatas */}
         <section className="p-10 bg-mainColor">
-          <CarouselHome />
+          <CarouselHome dataContent={dataContent} />
         </section>
         {/* Tentang Canopus */}
         <section className="min-h-screen p-32 bg-homeAbout2BG bg-no-repeat bg-cover">
@@ -63,7 +63,7 @@ export default function beranda() {
                   alt="Astro 4"
                   width={300}
                   height={300}
-                  priority
+                  priority={true}
                   className="mx-auto w-56"
                 />
               </div>
@@ -78,7 +78,7 @@ export default function beranda() {
                   alt="Astro 5"
                   width={300}
                   height={300}
-                  priority
+                  priority={true}
                   className="mx-auto w-56"
                 />
               </div>
@@ -95,7 +95,7 @@ export default function beranda() {
                     alt="Astro 6"
                     width={300}
                     height={300}
-                    priority
+                    priority={true}
                     className="mx-auto w-56"
                   />
                 </div>
@@ -106,4 +106,38 @@ export default function beranda() {
       </main>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  // mengambil token session
+  const token = "lT2ugAw8ku6dUglcTuaxrDJfLC8jQ1NsnPyDjGn3";
+
+  // mengambil data canopusAPI
+  const resContent = await fetch(`http://canopusapi.test/api/content`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const content = await resContent.json();
+  const dataContent = content.data;
+  const limitContent = dataContent.slice(0, 3);
+
+  // mengambil data YouTube API
+  // const idVideo = limitContent.map((limitContent) => limitContent.videoId);
+  // const APIkey1 = "AIzaSyA5Jyd-dCU1asIJnNSoH9vmtuK8E5TD08M";
+  // const APIkey2 = "AIzaSyBUNRlo8oU4M2rLwScD9MHhFJk_puTiCKw";
+
+  // const response = await fetch(
+  //   `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${idVideo}&key=${APIkey1}`
+  // );
+  // const ytdata = await response.json();
+  // const ytdataItem = ytdata.items;
+  // const ytIdVideo = ytdataItem.map((ytdataItem) => ytdataItem.id);
+
+  return {
+    props: {
+      dataContent: limitContent,
+      // ytIdVideo: ytIdVideo,
+    },
+  };
 }

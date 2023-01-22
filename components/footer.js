@@ -13,8 +13,9 @@ export default function Footer() {
                 src="/imgs/logo.png"
                 width={512}
                 height={512}
-                priority
+                priority={true}
                 alt="Logo1"
+                as="image"
               />
             </div>
             {/* Dalam Canopus */}

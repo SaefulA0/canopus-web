@@ -1,10 +1,12 @@
 import { Carousel } from "flowbite-react";
+import Image from "next/legacy/image";
 
-export default function CarouselHome() {
+export default function CarouselHome({ dataContent }) {
+  // console.log(dataContent);
   return (
     <>
       <Carousel
-        slide={false}
+        slideInterval={5000}
         leftControl={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,75 +37,47 @@ export default function CarouselHome() {
         }
         indicators={false}
       >
-        <>
-          <div className="flex justify-center gap-8">
-            <div className="w-96 bg-secondColor aspect-video flex justify-center items-center">
-              Video
-            </div>
-            <div className="relative w-3/6 container whitespace-normal text-textMainColor mt-3">
-              <h2 className="text-xl mb-2 font-bold">Tata Surya</h2>
-              <p className="indent-8 text-justify text-opacity-70 leading-relaxed line-clamp-4">
-                Tata Surya adalah kumpulan benda langit yang terdiri dari sebuah
-                bintang yang disebut matahari dan semua benda terikat oleh
-                gravitasi. Benda termasuk delapan planet yang sudah diketahui
-                mengorbit elips, lima planet kerdil / katai, 173 satelit alami
-                yang telah diidentifikasi, dan jutaan benda langit (meteor,
-                asteroid, komet) lainnya. Tata Surya adalah kumpulan benda
-                langit yang terdiri dari sebuah bintang yang disebut matahari
-                dan semua benda terikat oleh gravitasi.
-              </p>
-              <button className="absolute bottom-0 right-0 w-fit mt-2 py-2 px-8 rounded-lg shadow-xl bg-secondColor transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300">
-                Lihat
-              </button>
-            </div>
-          </div>
-        </>
-        <>
-          <div className="flex justify-center gap-8">
-            <div className="w-96 bg-secondColor aspect-video flex justify-center items-center">
-              Video
-            </div>
-            <div className="relative w-3/6 container whitespace-normal text-textMainColor mt-3">
-              <h2 className="text-xl mb-2 font-bold">Tata Surya</h2>
-              <p className="indent-8 text-justify text-opacity-70 leading-relaxed line-clamp-4">
-                Tata Surya adalah kumpulan benda langit yang terdiri dari sebuah
-                bintang yang disebut matahari dan semua benda terikat oleh
-                gravitasi. Benda termasuk delapan planet yang sudah diketahui
-                mengorbit elips, lima planet kerdil / katai, 173 satelit alami
-                yang telah diidentifikasi, dan jutaan benda langit (meteor,
-                asteroid, komet) lainnya. Tata Surya adalah kumpulan benda
-                langit yang terdiri dari sebuah bintang yang disebut matahari
-                dan semua benda terikat oleh gravitasi.
-              </p>
-              <button className="absolute bottom-0 right-0 w-fit mt-2 py-2 px-8 rounded-lg shadow-xl bg-secondColor transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300">
-                Lihat
-              </button>
-            </div>
-          </div>
-        </>
-        <>
-          <div className="flex justify-center gap-8">
-            <div className="w-96 bg-secondColor aspect-video flex justify-center items-center">
-              Video
-            </div>
-            <div className="relative w-3/6 container whitespace-normal text-textMainColor mt-3">
-              <h2 className="text-xl mb-2 font-bold">Tata Surya</h2>
-              <p className="indent-8 text-justify text-opacity-70 leading-relaxed line-clamp-4">
-                Tata Surya adalah kumpulan benda langit yang terdiri dari sebuah
-                bintang yang disebut matahari dan semua benda terikat oleh
-                gravitasi. Benda termasuk delapan planet yang sudah diketahui
-                mengorbit elips, lima planet kerdil / katai, 173 satelit alami
-                yang telah diidentifikasi, dan jutaan benda langit (meteor,
-                asteroid, komet) lainnya. Tata Surya adalah kumpulan benda
-                langit yang terdiri dari sebuah bintang yang disebut matahari
-                dan semua benda terikat oleh gravitasi.
-              </p>
-              <button className="absolute bottom-0 right-0 w-fit mt-2 py-2 px-8 rounded-lg shadow-xl bg-secondColor transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300">
-                Lihat
-              </button>
-            </div>
-          </div>
-        </>
+        {dataContent.map((dataContent) => {
+          return (
+            <>
+              <div
+                key={dataContent.title}
+                className="flex justify-center gap-8"
+              >
+                <div className="w-96 aspect-video bg-secondColor flex justify-center items-center">
+                  {dataContent.mainpicture ? (
+                    <img
+                      src="/imgs/halUnik/solarWind.jpg"
+                      alt="img content"
+                      className="bg-cover bg-no-repeat aspect-video"
+                    />
+                  ) : (
+                    <img
+                      src="/imgs/defaultContent.png"
+                      alt="img content"
+                      className="bg-cover bg-no-repeat aspect-video"
+                    />
+                  )}
+                </div>
+                <div className="relative w-3/6 container whitespace-normal text-textMainColor mt-3">
+                  <h2 className="text-xl mb-2 font-bold">
+                    {dataContent.title}
+                  </h2>
+                  <p className="indent-8 text-justify text-opacity-70 leading-relaxed line-clamp-4">
+                    {dataContent.intro}
+                  </p>
+                  <a
+                    type="button"
+                    href={`/bendaLangit/lihat/${dataContent.id}`}
+                    className="absolute bottom-0 right-0 w-fit mt-2 py-2 px-8 rounded-lg shadow-xl bg-secondColor transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300"
+                  >
+                    Lihat
+                  </a>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </Carousel>
     </>
   );
