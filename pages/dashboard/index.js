@@ -1,71 +1,28 @@
-import Head from "next/head";
-import bg from "../../public/imgs/background/bg-login.png";
+import Layout from "./layouts/layout";
+import { getSession, useSession } from "next-auth/react";
 
-export default function login(){
-    return(
-        <main className="font-poppins">
-        <Head>
-            <title>Login Dashboard</title>
-        </Head>
-        <div className="text-gray-600 body-font font-inter content-center">
-        {/* Alert */}
-        <div className="flex flex-wrap h-screen content-center items-center" style={{backgroundImage: `url(${bg.src})`,
-        width: '100%',
-        height: '100%',
-        }}>
-          {/* flex kiri Logo */}
-          <div className="w-56 md:w-1/2 mt-10 md:mt-0 mb-10 md:mb-0 mx-auto">
-            <img src="imgs/logo.png" alt="Logo" className="mx-auto md:w-1/2" />
-          </div>
-          {/* flex kanan Card login */}
-          <div className="w-5/6 md:w-1/2 mx-auto mb-24 md:mb-0 md:pb-24 h-fit md:h-screen bg-[#282F6A] rounded-lg p-8 flex content-center">
-            <div className="w-full md:w-3/5 mx-auto md:pt-10 md:mt-24">
-              <h1 className="text-2xl md:text-4xl text-white font-bold title-font mb-10">
-                Dashboard
-              </h1>
-              {/* form */}
-              <form action="/dashboard/main" method="post">
-                {/* username */}
-                <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-white">
-                        Username
-                      </span>
-                      <input
-                        type="text"
-                        id="username"
-                        placeholder="Masukan username"
-                        name="username"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                </div>
-                <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-white">
-                        Password
-                      </span>
-                      <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Masukan password"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                </div>
-                <button
-                  type="submit"
-                  value="Login"
-                  className="w-full mt-8 rounded-lg shadow-md text-white bg-[#FF9636] bg-opacity-90 hover:bg-orange-500 border-0 py-2 px-8 focus:outline-none text-sm md:text-lg transition-colors duration-150 ease-in-out"
-                >
-                  Login
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    );
+
+
+export default function index () {
+
+const { data: status } = useSession();
+    if (status === "authenticated"){
+        return(
+            <Layout title = "Dashboard">
+                <h1>Halaman Utama</h1>
+            </Layout>
+        );
+    }
+}
+
+export async function getServerSideProps(req, res) {
+    const session = await getSession(req, res);
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/dashboard/login",
+                permanent: false,
+            },
+        };
+    }
 }
