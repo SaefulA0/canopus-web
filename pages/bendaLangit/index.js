@@ -5,10 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import CarouselCard from "../../components/cards/carouselCard";
 import SwiperCore, {Autoplay} from 'swiper';
-import CardkontenPlanet from "../../components/cards/cardkontenPlanet";
-import CardkontenKerdil from "../../components/cards/cardKontenKerdil";
-import CardkontenBintang from "../../components/cards/cardKontenBintang";
-import CardkontenRasBintang from "../../components/cards/cardKontenRasBintang";
+import CardKonten from "../../components/cards/cardKonten";
 
 export default function BendaLangit() {
 
@@ -72,7 +69,7 @@ export default function BendaLangit() {
                   </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
-                <CardkontenPlanet/>
+                <CardKonten/>
             </div>
           </div>
           <div>
@@ -85,7 +82,7 @@ export default function BendaLangit() {
                   </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
-                <CardkontenKerdil/>
+                <CardKonten/>
             </div>
           </div>
           <div>
@@ -98,7 +95,7 @@ export default function BendaLangit() {
                   </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
-                <CardkontenBintang/>
+                <CardKonten/>
             </div>
           </div>
           <div>
@@ -111,7 +108,20 @@ export default function BendaLangit() {
                   </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
-                <CardkontenRasBintang/>
+                <CardKonten/>
+            </div>
+          </div>
+          <div>
+            <div class=" ml-4 flex justify-between px-20">
+                <h1 class="text-3xl font-bold text-white">Benda Langit Lainnya</h1>
+                  <Link
+                      href="/planet"
+                      className="inline-flex text-white focus:outline-none hover:underline hover:text-secondColor rounded-md text-lg">
+                      Lihat selengkapnya
+                  </Link>
+            </div>
+            <div className="justify-center flex flex-wrap gap-10 pt-10 pb-20">
+                <CardKonten/>
             </div>
           </div>
         </section>
