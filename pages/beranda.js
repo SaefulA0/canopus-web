@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/layout";
+import CarouselHome from "../components/carousels/carouselHome";
 
 export default function beranda() {
   return (
@@ -21,7 +22,7 @@ export default function beranda() {
               </p>
               <Link
                 href="/bendaLangit"
-                className="inline-flex text-white bg-secondColor border-0 py-2 px-6 focus:outline-none rounded text-lg"
+                className="inline-flex shadow-xl text-white bg-secondColor border-0 py-2 px-6 focus:outline-none rounded text-lg transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300"
               >
                 Let's GO!
               </Link>
@@ -39,11 +40,11 @@ export default function beranda() {
           </div>
         </section>
         {/* pembatas */}
-        <section className="h-32 bg-mainColor">
-          <div className="hidden">-</div>
+        <section className="p-10 bg-mainColor">
+          <CarouselHome />
         </section>
         {/* Tentang Canopus */}
-        <section className="min-h-screen p-32 bg-homeAboutBG bg-no-repeat bg-cover">
+        <section className="min-h-screen p-32 bg-homeAbout2BG bg-no-repeat bg-cover">
           <div className="container">
             <div className="pb-12">
               <h1 className="underline text-3xl font-bold text-white text-center">
