@@ -21,7 +21,8 @@ module.exports = {
     },
     colors: {
       mainColor: "#282F6A",
-      secondColor: "#FF9636",
+      secondColor: "#FD841F",
+      secondColorHover: "#E14D2A",
       thirdColor: "#50568D",
       textMainColor: "#F6F6F6",
     },
@@ -29,5 +30,5 @@ module.exports = {
       Poppins: ["Poppins"],
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("@tailwindcss/line-clamp")],
 };
