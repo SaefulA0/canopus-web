@@ -63,20 +63,7 @@ export default function BendaLangit() {
             <div class=" ml-4 pt-32 flex justify-between px-20">
                 <h1 class="text-3xl font-bold text-white">Planet</h1>
                   <Link
-                      href="/planet"
-                      className="inline-flex text-white focus:outline-none hover:underline hover:text-secondColor rounded-md text-lg">
-                      Lihat selengkapnya
-                  </Link>
-            </div>
-            <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
-                <CardKonten/>
-            </div>
-          </div>
-          <div>
-            <div class=" ml-4 flex justify-between px-20">
-                <h1 class="text-3xl font-bold text-white">Planet Kerdil</h1>
-                  <Link
-                      href="/planet"
+                      href="/bendaLangit/planet"
                       className="inline-flex text-white focus:outline-none hover:underline hover:text-secondColor rounded-md text-lg">
                       Lihat selengkapnya
                   </Link>
@@ -89,7 +76,7 @@ export default function BendaLangit() {
             <div class=" ml-4 flex justify-between px-20">
                 <h1 class="text-3xl font-bold text-white">Bintang</h1>
                   <Link
-                      href="/planet"
+                      href="/bendaLangit/bintang"
                       className="inline-flex text-white focus:outline-none hover:underline hover:text-secondColor rounded-md text-lg">
                       Lihat selengkapnya
                   </Link>
@@ -102,7 +89,7 @@ export default function BendaLangit() {
             <div class=" ml-4 flex justify-between px-20">
                 <h1 class="text-3xl font-bold text-white">Rasi Bintang</h1>
                   <Link
-                      href="/planet"
+                      href="/bendaLangit/rasiBintang"
                       className="inline-flex text-white focus:outline-none hover:underline hover:text-secondColor rounded-md text-lg">
                       Lihat selengkapnya
                   </Link>
@@ -115,7 +102,7 @@ export default function BendaLangit() {
             <div class=" ml-4 flex justify-between px-20">
                 <h1 class="text-3xl font-bold text-white">Benda Langit Lainnya</h1>
                   <Link
-                      href="/planet"
+                      href="/bendaLangit/lainnya"
                       className="inline-flex text-white focus:outline-none hover:underline hover:text-secondColor rounded-md text-lg">
                       Lihat selengkapnya
                   </Link>
