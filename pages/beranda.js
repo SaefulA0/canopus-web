@@ -110,7 +110,7 @@ export default function beranda({ dataContent, ytIdVideo }) {
 
 export async function getServerSideProps() {
   // mengambil token session
-  const token = "lT2ugAw8ku6dUglcTuaxrDJfLC8jQ1NsnPyDjGn3";
+  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
 
   // mengambil data canopusAPI
   const resContent = await fetch(`http://canopusapi.test/api/content`, {
@@ -121,18 +121,6 @@ export async function getServerSideProps() {
   const content = await resContent.json();
   const dataContent = content.data;
   const limitContent = dataContent.slice(0, 3);
-
-  // mengambil data YouTube API
-  // const idVideo = limitContent.map((limitContent) => limitContent.videoId);
-  // const APIkey1 = "AIzaSyA5Jyd-dCU1asIJnNSoH9vmtuK8E5TD08M";
-  // const APIkey2 = "AIzaSyBUNRlo8oU4M2rLwScD9MHhFJk_puTiCKw";
-
-  // const response = await fetch(
-  //   `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${idVideo}&key=${APIkey1}`
-  // );
-  // const ytdata = await response.json();
-  // const ytdataItem = ytdata.items;
-  // const ytIdVideo = ytdataItem.map((ytdataItem) => ytdataItem.id);
 
   return {
     props: {

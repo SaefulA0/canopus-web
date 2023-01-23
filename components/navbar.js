@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import BtnProfil from "./buttons/btnProfil";
+import BtnProfil from "./dropdowns/ddownProfil";
 
 const navigationRoutes = ["beranda", "bendaLangit", "tentangCanopus"];
 

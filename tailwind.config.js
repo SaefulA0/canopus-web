@@ -17,6 +17,7 @@ module.exports = {
         homeForumBG: "url(../public/imgs/astroMod/astro-forum3.png)",
         homeAbout2BG: "url(../public/imgs/background/bg-home2.png)",
         contentBG: "url(../public/imgs/background/bg-konten.png)",
+        loginBG: "url(../public/imgs/background/bg-login.png)",
       },
     },
     colors: {

@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { signOut } from "next-auth/react";
 
 export default function BtnHambergerProfil() {
   return (
@@ -57,8 +58,8 @@ export default function BtnHambergerProfil() {
             </Menu.Item>
             <Menu.Item>
               <div className="group hover:bg-red-500 rounded-b-lg font-semibold transition ease-in-out hover:-translate-y-1 duration-300">
-                <a
-                  href="/dashboard/profil/editProfile"
+                <button
+                  onClick={() => signOut()}
                   className="flex text-red-500 w-full items-center cursor-pointer text-sm rounded-t-md px-2 py-2 group-hover:text-white hover:bg-opacity-20"
                 >
                   <svg
@@ -76,7 +77,7 @@ export default function BtnHambergerProfil() {
                     />
                   </svg>
                   Keluar
-                </a>
+                </button>
               </div>
             </Menu.Item>
           </Menu.Items>
