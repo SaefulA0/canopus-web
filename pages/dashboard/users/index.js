@@ -1,7 +1,17 @@
 import Layout from "../layouts/layout";
 import TableUsers from "../../../components/table/tableUsers";
+import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import Router from "next/router";
 
-export default function index () {
+
+export default function index ({ dataUser }) {
+  const { data: session, status } = useSession();
+  console.log(dataUser);
+  useEffect(() => {
+    if (status === "unauthenticated") Router.replace("/dashboard/login");
+  }, [status]);
     return(
         <Layout title = "Users">
             <h1 className="font-bold mx-10 my-10 text-lg">Table Users</h1>
@@ -13,4 +23,39 @@ export default function index () {
         </div>
         </Layout>
     );
+}
+
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/dashboard/login",
+        permanent: false,
+      },
+    };
+  }
+  const token = session.user.access_token;
+  const response = await fetch (
+    `http://canopusapi.test/api/user`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const dataUser = await response.json();
+  if (dataUser.message === "This action is unauthorized."){
+    return{
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      dataUser: dataUser.data,
+    },
+  };
 }

@@ -23,10 +23,10 @@ export default function TableFavorites() {
                 Id
               </th>
               <th scope="col" className="py-3 px-6 border-b-2">
-                Nominal
+                User id
               </th>
               <th scope="col" className="py-3 px-6 border-b-2">
-                Tanggal Bayar
+                Content id
               </th>
               <th scope="col" className="py-3 px-6 border-b-2 text-center">
                 Status
