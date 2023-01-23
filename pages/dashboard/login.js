@@ -4,7 +4,7 @@ import {signIn, useSession} from "next-auth/react";
 import { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
 
-export default function login(){
+export default function Login(){
   const [userInfo, setUserInfo] = useState({ username: "", password: "" });
   const { status } = useSession();
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function login(){
   }, [status]);
 
   const handleSubmit = async (e) => {
-    e.prevenntDefault();
+    e.preventDefault();
 
     await signIn("login", {
       username: userInfo.username,
