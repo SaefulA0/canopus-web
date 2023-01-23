@@ -20,7 +20,7 @@ function SideNavbar() {
           <div className="flex flex-col justify-start item-center">
             <div className="mt-4">
               {/* Nav dashboard */}
-              <Link href="/dashboard/main">
+              <Link href="/dashboard">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-orange-500 p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
