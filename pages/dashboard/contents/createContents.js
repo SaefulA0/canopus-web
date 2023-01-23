@@ -1,8 +1,10 @@
 import Layout from "../layouts/layout";
+import Router, { useRouter } from "next/router";
 
 export default function createContents () {
+    const router = useRouter();
     return(
-        <Layout title="Tambah Simpanan Sukarela">
+        <Layout title="Create Contents">
         <main className="font-inter">
           <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
             {/* main */}
@@ -116,7 +118,7 @@ export default function createContents () {
                         </span>
                         <input
                           type="file"
-                          id="ultiple_files"
+                          id="multiple_files"
                           name="pictures"
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
@@ -126,6 +128,18 @@ export default function createContents () {
                       <label className="block">
                         <span className="block text-sm font-semibold text-[#667080]">
                           Trivia
+                        </span>
+                        <input
+                          type="text"
+                          name="trivia"
+                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                        />
+                      </label>
+                    </div>
+                    <div className="my-2">
+                      <label className="block">
+                        <span className="block text-sm font-semibold text-[#667080]">
+                          Video id
                         </span>
                         <input
                           type="text"
@@ -145,7 +159,7 @@ export default function createContents () {
                         Kembali
                       </button>
                       {/* button simpan */}
-                      <button className="w-full  px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md">
+                      <button className="w-full  px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#FF9636] hover:bg-orange-500 text-white shadow-md">
                         Tambah
                       </button>
                     </div>
