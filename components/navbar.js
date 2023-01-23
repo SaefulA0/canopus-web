@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import BtnProfil from "./buttons/btnProfil";
 
 const navigationRoutes = ["beranda", "bendaLangit", "tentangCanopus"];
 
@@ -9,24 +10,25 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed z-50 px-5 py-3 w-full text-textMainColor body-font bg-gradient-to-b from-gray-900">
+      <header className="absolute z-50 px-5 py-3 w-full text-textMainColor body-font bg-gradient-to-b from-gray-900">
         <div className="relative w-full mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <Link
             rel="preload"
-            as="image"
             href="/beranda"
+            as="image"
             className="absolute mb-4  md:mb-0"
           >
             <Image
               src="/imgs/logo.png"
               alt="Astro 4"
-              priority="true"
+              as="image"
+              priority={true}
               width={300}
               height={300}
               className="mx-auto w-56"
             />
           </Link>
-          <nav className="md:ml-auto justify-evenly text-mainTextColor md:mr-auto flex flex-wrap gap-5 items-center text-lg font-medium">
+          <nav className=" mx-auto justify-evenly text-mainTextColor md:mr-auto flex flex-wrap gap-5 items-center text-lg font-medium">
             {navigationRoutes.map((singleRoute) => {
               return (
                 <NavigationLink
@@ -38,9 +40,10 @@ export default function Navbar() {
               );
             })}
           </nav>
-          {/* <button className="inline-flex items-center bg-thirdColor border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-          Button
-        </button> */}
+          {/* <button className="inline-flex shadow-xl text-white bg-secondColor border-0 py-1 px-4 focus:outline-none rounded text-lg transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300">
+            Login
+          </button> */}
+          <BtnProfil />
         </div>
       </header>
     </>
