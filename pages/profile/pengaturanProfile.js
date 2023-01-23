@@ -116,6 +116,58 @@ export default function pengaturanProfile() {
                 </div>                
               </div>
               {/* akhir isian informasi akun */}
+
+              {/* Perbarui password */}
+              <div className="relative">
+                <p className="text-left text-xl font-extrabold border-b-2 border-opacity-20 pt-52 text-white">Perbarui Password</p>
+                <div className="mt-7">   
+                    <p className="text-white text-lg">Password sebelumnya</p>            
+                      <label for="PassSblmnya">
+                        <input
+                          name="pass_sblm"
+                          type="pass_sblm"
+                          id="pass_sblm"                      
+                          className="py-2 px-2 ml-1 w-full mt-2 rounded-lg bg-white shadow text-thirdColor"
+                        />
+                      </label>
+
+                    <p className="text-white text-lg mt-3">Password Baru</p>
+                      <label for="PassBaru">
+                        <input
+                        name="pass_baru"
+                        type="pass_baru"
+                        id="pass_baru"
+                        className="py-2 px-2 ml-1 w-full mt-2 rounded-lg bg-white shadow text-thirdColor"
+                        />
+                      </label>
+
+                      <p className="text-white text-lg mt-3">Konfirmasi Password</p>
+                      <label for="Pass">
+                        <input
+                        name="pass"
+                        type="pass"
+                        id="pass"
+                        className="py-2 px-2 ml-1 w-full mt-2 rounded-lg bg-white shadow text-thirdColor"
+                        />
+                      </label>
+                </div> 
+                <div className="flex justify-end mt-7 gap-6">                  
+                      <button className="px-6 py-2 rounded-lg text-center text-secondColor bg-white hover:bg-gray-300">
+                        Batal
+                      </button>
+                      <button className="px-5 py-2 text-center rounded-lg text-white bg-secondColor hover:bg-orange-500">
+                        Simpan
+                      </button>                            
+                </div>
+                <Image
+              src="/imgs/astroMod/astro-pass.png"
+              alt="astro 7"
+              width={300}
+              height={300}
+              priority
+              className="w-96 mx-auto mt-2"
+              />
+              </div>
             </div>
             {/* akhir konten pengaturan */}
           </div>
