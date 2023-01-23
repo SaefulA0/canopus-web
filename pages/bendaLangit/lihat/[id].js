@@ -1,13 +1,23 @@
-import Layout from "../../../components/layout";
-import CardHalUnik from "../../../components/cards/cardHalUnik";
-import CardKonten from "../../../components/cards/cardKonten";
 import Image from "next/legacy/image";
+import Layout from "../../../components/layout";
+import { useSession } from "next-auth/react";
+import CardHalUnik from "../../../components/cards/cardHalUnik";
+import CardKontenPlanets from "../../../components/cards/cardContentPlanets";
+import CardKontenStars from "../../../components/cards/cardContentStars";
+import CardKontenConstellations from "../../../components/cards/cardContentConstellation";
+import CardKontenOthers from "../../../components/cards/cardContentOthers";
 
 export default function lihatBenda({
   ytIdVideo,
   dataContentShow,
   dataUniqContent,
+  dataContentPlanets,
+  dataContentStars,
+  dataContentOthers,
+  dataContentConstellations,
 }) {
+  const { data: session, status } = useSession();
+
   return (
     <Layout title="Lihat">
       <main>
@@ -53,20 +63,42 @@ export default function lihatBenda({
               </div>
             </div>
             <button className="absolute right-16 bottom-16">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                className="w-10 h-10 hover:fill-secondColorHover hover:stroke-secondColorHover transition ease-in-out hover:-translate-y-1 duration-300"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                />
-              </svg>
+              {status === "authenticated" && (
+                <div className="absolute bottom-6 right-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-10 h-10 stroke-gray-100 hover:fill-secondColorHover hover:stroke-secondColorHover transition ease-in-out hover:-translate-y-1 duration-300"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                    />
+                  </svg>
+                </div>
+              )}
+              {status === "unauthenticated" && (
+                <div className="absolute hidden bottom-6 right-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-10 h-10 stroke-gray-100 hover:fill-secondColorHover hover:stroke-secondColorHover transition ease-in-out hover:-translate-y-1 duration-300"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                    />
+                  </svg>
+                </div>
+              )}
             </button>
           </>
         </section>
@@ -131,9 +163,8 @@ export default function lihatBenda({
                         key={ytIdVideo}
                         className="embed-responsive-item absolute top-0 right-0 bottom-0 left-0 w-full h-full"
                         src={`https://www.youtube.com/embed/${ytIdVideo}`}
-                        allowFullScreen=""
-                        data-gtm-yt-inspected-2340190_699="true"
-                        id="240632615"
+                        frameborder="0"
+                        allowFullScreen
                       />
                     );
                   })}
@@ -153,7 +184,7 @@ export default function lihatBenda({
               <h2 className="text-center text-2xl font-semibold underline mb-8">
                 Hal Unik Yang Pernah Terjadi Di Bumi
               </h2>
-              <div className="flex w-full gap-6 overflow-x-scroll [&>div]:flex-shrink-0 items-center">
+              <div className="flex pt-2 w-full gap-6 overflow-x-scroll [&>div]:flex-shrink-0 items-center">
                 {dataUniqContent.map((dataUniqContent) => (
                   <CardHalUnik dataUniqContent={dataUniqContent} />
                 ))}
@@ -161,14 +192,52 @@ export default function lihatBenda({
             </div>
           </div>
           <div className="flex flex-col items-center mt-16 px-10 py-10 w-full rounded-xl shadow-lg bg-mainColor text-textMainColor">
-            <h2 className="text-2xl text-center font-semibold underline mb-8">
+            <h2 className="text-2xl text-center font-semibold underline mb-6">
               Planet Lainnya
             </h2>
-            <div className="flex w-full gap-6 overflow-x-scroll [&>div]:flex-shrink-0 items-center">
-              <CardKonten />
-              <CardKonten />
-              <CardKonten />
-              <CardKonten />
+            <div className="flex w-full pt-2 gap-6 overflow-x-scroll [&>div]:flex-shrink-0 items-center">
+              {dataContentShow.category == "Planet" && (
+                <>
+                  {dataContentPlanets.map((dataContentPlanets) => (
+                    <CardKontenPlanets
+                      key={dataContentPlanets.id}
+                      dataContentPlanets={dataContentPlanets}
+                    />
+                  ))}
+                </>
+              )}
+              {dataContentShow.category == "Bintang" && (
+                <>
+                  {dataContentStars.map((dataContentStars) => (
+                    <CardKontenStars
+                      key={dataContentStars.id}
+                      dataContentStars={dataContentStars}
+                    />
+                  ))}
+                </>
+              )}
+              {dataContentShow.category == "Rasi Bintang" && (
+                <>
+                  {dataContentConstellations.map(
+                    (dataContentConstellations) => (
+                      <CardKontenConstellations
+                        key={dataContentConstellations.id}
+                        dataContentConstellations={dataContentConstellations}
+                      />
+                    )
+                  )}
+                </>
+              )}
+              {dataContentShow.category == "Lainnya di Angkasa" && (
+                <>
+                  {dataContentOthers.map((dataContentOthers) => (
+                    <CardKontenOthers
+                      key={dataContentOthers.id}
+                      dataContentOthers={dataContentOthers}
+                    />
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -178,7 +247,7 @@ export default function lihatBenda({
 }
 export async function getServerSideProps(context) {
   // mengambil token session
-  const token = "lT2ugAw8ku6dUglcTuaxrDJfLC8jQ1NsnPyDjGn3";
+  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
 
   // mengambil data content show canopusAPI
   const { id } = context.params;
@@ -193,16 +262,6 @@ export async function getServerSideProps(context) {
   const contentShow = await resContentShow.json();
   const dataContentShow = contentShow.data;
 
-  // mengambil data content index canopusAPI
-  const resContentIndex = await fetch(
-    `http://canopusapi.test/api/content/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
   // mengambil data Hal Unik yang pernah terjadi
   const eventContent = dataContentShow.event;
   const resUniqContent = await fetch(
@@ -215,6 +274,7 @@ export async function getServerSideProps(context) {
   );
   const uniqContent = await resUniqContent.json();
   const dataUniqContent = uniqContent.data;
+  const shiftDataUniqContent = dataUniqContent.shift();
 
   // mengambil data YouTube API
   const idVideo = dataContentShow.videoId;
@@ -228,11 +288,63 @@ export async function getServerSideProps(context) {
   const ytdataItem = ytdata.items;
   const ytIdVideo = ytdataItem.map((ytdataItem) => ytdataItem.id);
 
+  // mengambil data planet pada canopusAPI
+  const resContentPlanet = await fetch(
+    `http://canopusapi.test/api/content?category=planet`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const contentPlanet = await resContentPlanet.json();
+  const dataContentPlanet = contentPlanet.data;
+
+  // mengambil data bintang pada canopusAPI
+  const resContentStar = await fetch(
+    `http://canopusapi.test/api/content?category=bintang`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const contentStar = await resContentStar.json();
+  const dataContentStar = contentStar.data;
+
+  // mengambil data rasi bintang pada canopusAPI
+  const resContentConstellation = await fetch(
+    `http://canopusapi.test/api/content?category=rasi bintang`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const contentConstellation = await resContentConstellation.json();
+  const dataContentConstellation = contentConstellation.data;
+
+  // mengambil data lainnya pada canopusAPI
+  const resContentOthers = await fetch(
+    `http://canopusapi.test/api/content?category=lainnya di angkasa`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const contentOthers = await resContentOthers.json();
+  const dataContentOthers = contentOthers.data;
+
   return {
     props: {
       dataContentShow: dataContentShow,
       dataUniqContent: dataUniqContent,
       ytIdVideo: ytIdVideo,
+      dataContentPlanets: dataContentPlanet,
+      dataContentStars: dataContentStar,
+      dataContentConstellations: dataContentConstellation,
+      dataContentOthers: dataContentOthers,
     },
   };
 }

@@ -5,7 +5,7 @@ export default function CardHalUnik({ dataUniqContent }) {
     <>
       <div
         key={dataUniqContent.id}
-        className="relative aspect-video z-10 shadow-md cursor-pointer snap-center mb-6 transition ease-in-out hover:-translate-y-1 duration-300"
+        className="relative p-1 bg-gradient-to-tr from-blue-900 via-blue-800 to-blue-700 rounded-lg z-10 shadow-md cursor-pointer mb-6 transition ease-in-out hover:-translate-y-1 duration-300"
       >
         <Link href={`/bendaLangit/lihat/${dataUniqContent.id}`}>
           {dataUniqContent.mainpicture ? (
@@ -16,7 +16,7 @@ export default function CardHalUnik({ dataUniqContent }) {
             />
           ) : (
             <img
-              src="/imgs/defaultContent.png"
+              src="/imgs/defaultContentSquare.png"
               alt="bg"
               className="w-72 aspect-square object-cover rounded-lg"
             />

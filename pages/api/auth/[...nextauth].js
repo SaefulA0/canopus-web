@@ -7,12 +7,14 @@ export default NextAuth({
       id: "login",
       async authorize(credentials) {
         try {
-          const res = await fetch("canopusapi.test/api/login?", {
+          const res = await fetch("http://canopusapi.test/api/login", {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },
           });
-          const user = await res.json();
+          const login = await res.json();
+          const user = login.data;
+
           if (user) {
             return user;
           }
@@ -26,15 +28,13 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.accessToken = user.access_token;
+        token.token = user.token;
         token.user = user;
       }
-
       return token;
     },
-
     async session({ session, token }) {
-      session.accessToken = token.accessToken;
+      session.token = token.token;
       session.user = token.user;
 
       return session;
