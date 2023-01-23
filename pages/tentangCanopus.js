@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/layout";
 
-export default function Beranda() {
+export default function tentangCanopus() {
   return (
     <Layout title="Halaman Tentang">
       <main>
@@ -29,7 +29,7 @@ export default function Beranda() {
           <div className="p-3 justify-center text-center flex flex-wrap md:flex-nowrap gap-5 md:gap-16 items-center ">
             <Image
               src="/imgs/astronout/astro1.png"
-              alt="Astro 5"
+              alt="Astro 1"
               width={150}
               height={150}
               priority
@@ -46,7 +46,7 @@ export default function Beranda() {
             </p>
             <Image
               src="/imgs/astronout/astro2.png"
-              alt="Astro 5"
+              alt="Astro 2"
               width={150}
               height={150}
               priority
@@ -70,7 +70,7 @@ export default function Beranda() {
               <div className="bg-black flex flex-wrap rounded-xl bg-opacity-50 w-96 h-auto text-center item-center p-6">
                 <Image
                   src="/imgs/developer/dafa.png"
-                  alt="Astro 4"
+                  alt="photo profile 1"
                   width={150}
                   height={150}
                   priority
@@ -126,7 +126,7 @@ export default function Beranda() {
               <div className="bg-black flex flex-wrap rounded-xl bg-opacity-50 w-96 h-auto text-center item-center p-6">
                 <Image
                   src="/imgs/developer/saeful.png"
-                  alt="Astro 4"
+                  alt="photo profile 2"
                   width={150}
                   height={150}
                   priority
@@ -182,7 +182,7 @@ export default function Beranda() {
               <div className="bg-black flex flex-wrap rounded-xl bg-opacity-50 w-96 h-auto text-center item-center p-6">
                 <Image
                   src="/imgs/developer/fauzi.png"
-                  alt="Astro 4"
+                  alt="photo profile 3"
                   width={150}
                   height={150}
                   priority
@@ -236,7 +236,7 @@ export default function Beranda() {
               <div className="bg-black flex flex-wrap rounded-xl bg-opacity-50 w-96 h-auto text-center item-center p-6">
                 <Image
                   src="/imgs/developer/ikhsan.png"
-                  alt="Astro 4"
+                  alt="photo profile 4"
                   width={150}
                   height={150}
                   priority
@@ -353,7 +353,7 @@ export default function Beranda() {
               <div className="flex flex-wrap justify-center mt-14">
                 <Image
                   src="/imgs/astronout/astro10.png"
-                  alt="Astro 4"
+                  alt="Astro 3"
                   width={150}
                   height={150}
                   priority
@@ -369,7 +369,7 @@ export default function Beranda() {
                 />
                 <Image
                   src="/imgs/lainnya/nasa.png"
-                  alt="Astro 4"
+                  alt="Astro 5"
                   width={150}
                   height={150}
                   priority
@@ -377,7 +377,7 @@ export default function Beranda() {
                 />
                 <Image
                   src="/imgs/astronout/astro4.png"
-                  alt="Astro 4"
+                  alt="Astro 6"
                   width={150}
                   height={150}
                   priority
