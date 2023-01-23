@@ -11,13 +11,16 @@ export default function pengaturanProfile() {
           <div className="flex flex-wrap justify-center">
             {/* side bar */}
             <div className="justify-center mr-12">
-              <h1 className="font-bold text-xl text-gray-100 title-font underline">Pengaturan</h1>              
-                <div className="">
-                  <button className="py-1 rounded-lg w-24 ml-1 mt-5 block text-white hover:bg-opacity-90 hover:bg-[#FF9636] hover:shadow-lg">
+              <h1 className="font-bold text-xl ml-1 text-gray-100 title-font underline">Pengaturan</h1>              
+                <div className="items-center">
+                  <button className="py-1 rounded-lg w-28  mt-5 block text-white hover:bg-opacity-90 hover:bg-[#FF9636] hover:shadow-lg">
                     Akun
                   </button>
-                  <button className="py-1 rounded-lg w-24 ml-1 mt-1 block text-white hover:bg-opacity-90 hover:bg-[#FF9636] hover:shadow-lg">
+                  <button className="py-1 rounded-lg w-28  mt-1 block text-white hover:bg-opacity-90 hover:bg-[#FF9636] hover:shadow-lg">
                     Pasword
+                  </button>
+                  <button className="py-1 px-1 font-bold rounded-lg w-28 text-center mt-2 block hover:border text-secondColorHover hover:bg-opacity-90 hover:bg-secondColorHover hover:text-white hover:shadow-lg">
+                    Hapus Akun
                   </button>
                 </div>
                 <Image
@@ -43,7 +46,7 @@ export default function pengaturanProfile() {
                       width={300}
                       height={300}
                       priority
-                      className="w-40 h-40 absolute mt-60 ml-14 rounded-full shadow-xl"
+                      className="w-40 h-40 absolute mt-20 ml-14 rounded-full shadow-xl"
                     />                 
                     <Image
                       src="/imgs/backgroundProfile/bg-profile1.png"
@@ -56,64 +59,62 @@ export default function pengaturanProfile() {
                     {/* akhir foto cover */}
 
               {/* bagian header informasi akun */}
-              <div className="border-b">
-                <div className="flex flex-wrap mt-5">    
-                  <h1 className="font-bold text-xl pl-64 text-white">Nama Pengguna</h1>                
-                    <div className="flex flex-wrap ml-80">                  
-                      <button className="py-1 rounded-lg w-24 ml-1 block text-mainColor hover:bg-opacity-90 hover:text-white hover:bg-[#FF9636] hover:shadow-lg">
-                        Batal
-                      </button>
-                      <button className="py-1 rounded-lg w-24 ml-1 block text-mainColor hover:bg-opacity-90 hover:text-white hover:bg-[#FF9636] hover:shadow-lg">
-                        Simpan
-                      </button>                            
-                    </div> 
-                </div>
-                <h1 className="text-xs pl-64 pb-20 text-white">Bio pengguna</h1>
+              <div className="border-b flex">
+                <div className=" mt-5">   
+                  
+                    <h1 className="font-bold text-xl pl-64 text-white">Nama Pengguna</h1> 
+                    <p className="text-xs pl-64 pb-20 text-white">Bio pengguna</p>
+                             
+                </div>                
               </div>
               {/* akhir header informasi akun */}
 
               {/* isian informasi akun */}
-              <div className="">
-                <div className="mt-5 items-center"> 
-                  {/* inputan username */}
-                  <div className="flex flex-wrap justify-center">   
-                    <h1 className="text-white text-xl mr-9">Username</h1>            
-                      <label for="Username">
-                        <input
-                          name="username"
-                          type="username"
-                          id="username"                      
-                          className="py-2 px-2 ml-1 w-96 rounded-lg bg-thirdColor shadow text-white border-grey"
-                          />
-                      </label> 
-                  </div>
+              <div className="mt-7 flex flex-row justify-center">  
+                {/* bagian user & email */}
+                <div className="basis-2/3 mr-2">  
+                  <p className="text-white text-lg">Username</p>            
+                    <label for="Username">
+                      <input
+                        name="username"
+                        type="username"
+                        id="username"                      
+                        className="py-2 px-2 ml-1 w-full mt-2 rounded-lg bg-white shadow text-thirdColor"
+                      />
+                    </label>
 
-                  {/* inputan bio */}
-                  <div className="flex flex-wrap justify-center mt-3">   
-                    <h1 className="text-white text-xl mr-24">Bio</h1>            
-                      <label for="Bio">
-                        <input
-                          name="bio"
-                          type="bio"
-                          id="bio"                      
-                          className="py-2 px-2 ml-2 w-96 rounded-lg bg-thirdColor shadow text-white border-grey"
-                          />
-                      </label> 
-                  </div>
-
-                  {/* inputan email */}
-                  <div className="flex flex-wrap justify-center mt-3">   
-                    <h1 className="text-white text-xl mr-20">Email</h1>            
+                    <p className="text-white text-lg mt-3">Email</p>
                       <label for="Email">
                         <input
-                          name="email"
-                          type="email"
-                          id="email"                      
-                          className="py-2 px-2 ml-1 w-96 rounded-lg bg-thirdColor shadow text-white border-grey"
+                        name="email"
+                        type="email"
+                        id="email"
+                        className="py-2 px-2 ml-1 w-full mt-2 rounded-lg bg-white shadow text-thirdColor"
                         />
-                      </label> 
-                  </div>                  
-                </div>                
+                      </label>
+                </div>
+                
+
+                {/* bagian bio */}
+                <div className="basis-2/3 ml-2">            
+                    <p className="text-white text-lg ">Bio</p>
+                    <label for="Bio">
+                      <textarea
+                      name="bio"
+                      type="bio"
+                      id="bio"
+                      className="py-2 px-2 ml-1 w-full h-full mt-2 rounded-lg bg-white shadow text-thirdColor"
+                      />
+                    </label> 
+                </div>           
+              </div>
+              <div className="flex justify-end gap-5 mt-12">                  
+                <button className="px-6 py-2 rounded-lg text-center text-secondColor bg-white hover:bg-gray-300">
+                  Batal
+                </button>
+                <button className="px-5 py-2 text-center rounded-lg text-white bg-secondColor hover:bg-orange-500">
+                  Simpan
+                </button>                            
               </div>
               {/* akhir isian informasi akun */}
 
