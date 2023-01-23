@@ -81,8 +81,10 @@ export default function BtnProfil() {
     );
   }
   return (
-    <Link href="/login">
-      <button>Login</button>
+    <Link href="/login" className="group">
+      <button className="text-lg font-medium py-1 px-4 bg-gray-900/5 group-hover:bg-gray-900/10 group-hover:text-secondColorHover transition ease-in-out hover:-translate-y-1 duration-300 rounded-xl">
+        Login
+      </button>
     </Link>
   );
 }

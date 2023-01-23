@@ -1,6 +1,7 @@
 import Image from "next/legacy/image";
 import Layout from "../../../components/layout";
 import { useSession } from "next-auth/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import CardHalUnik from "../../../components/cards/cardHalUnik";
 import CardKontenPlanets from "../../../components/cards/cardContentPlanets";
 import CardKontenStars from "../../../components/cards/cardContentStars";

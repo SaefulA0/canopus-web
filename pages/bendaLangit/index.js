@@ -57,7 +57,7 @@ export default function BendaLangit({
                 width={300}
                 height={300}
                 priority
-                className=""
+                className="w-80"
               />
             </div>
           </div>

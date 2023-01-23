@@ -2,6 +2,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import Layout from "../components/layout";
 import CarouselHome from "../components/carousels/carouselHome";
+import { getSession } from "next-auth/react";
 
 export default function beranda({ dataContent, ytIdVideo }) {
   return (
@@ -108,14 +109,18 @@ export default function beranda({ dataContent, ytIdVideo }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req, res);
+  const tokenAccess = session.user.token;
+  console.log(tokenAccess);
+
   // mengambil token session
   const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
 
   // mengambil data canopusAPI
   const resContent = await fetch(`http://canopusapi.test/api/content`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${tokenAccess}`,
     },
   });
   const content = await resContent.json();
