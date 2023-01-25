@@ -1,6 +1,7 @@
 import Image from "next/legacy/image";
 import Layout from "../../../components/layout";
 import { useSession } from "next-auth/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import CardHalUnik from "../../../components/cards/cardHalUnik";
 import CardKontenPlanets from "../../../components/cards/cardContentPlanets";
 import CardKontenStars from "../../../components/cards/cardContentStars";
@@ -115,12 +116,12 @@ export default function lihatBenda({
               <h3 className="font-bold text-secondColor mb-2">Koordinat</h3>
               <p className="font-medium">{dataContentShow.coordinate}</p>
             </div>
-            <div className="w-64 text-center ">
+            {/* <div className="w-64 text-center ">
               <h3 className="font-bold text-secondColor mb-2">
                 Jarak Dari Bulan
               </h3>
               <p className="font-medium">{dataContentShow.coordinate}</p>
-            </div>
+            </div> */}
           </div>
         </section>
         {/* Informasi planet */}
@@ -247,7 +248,7 @@ export default function lihatBenda({
 }
 export async function getServerSideProps(context) {
   // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+  const token = "32|1ozGuygyae9OX07cKufyVlnjhJmfJ3D5O9KYGEOK";
 
   // mengambil data content show canopusAPI
   const { id } = context.params;

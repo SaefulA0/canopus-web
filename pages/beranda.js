@@ -2,15 +2,28 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import Layout from "../components/layout";
 import CarouselHome from "../components/carousels/carouselHome";
+import { getSession } from "next-auth/react";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-export default function beranda({ dataContent, ytIdVideo }) {
+export default function beranda({ dataContent }) {
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
     <Layout title="Beranda">
       <main>
         {/* <Navbar /> */}
         <section className="h-screen bg-heroBG bg-center bg-cover bg-no-repeat flex justify-center items-center text-gray-600 body-font">
           <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-            <div className="lg:flex-grow w-fit md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+            <div
+              data-aos="zoom-in-right"
+              data-aos-duration="500"
+              data-aos-anchor-placement="top-center"
+              className="lg:flex-grow w-fit md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
+            >
               <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-100">
                 Hello Astroners!
                 <br className="hidden lg:inline-block" />
@@ -27,16 +40,6 @@ export default function beranda({ dataContent, ytIdVideo }) {
                 Let's GO!
               </Link>
             </div>
-            {/* <div className="md:mr-28">
-            <Image
-              className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 object-cover object-center rounded"
-              alt="hero"
-              width={512}
-              height={512}
-              priority
-              src="/imgs/astronout/astro10.png"
-            />
-          </div> */}
           </div>
         </section>
         {/* pembatas */}
@@ -108,9 +111,12 @@ export default function beranda({ dataContent, ytIdVideo }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req, res);
+  // const tokenAccess = session.user.token;
+
   // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+  const token = "34|OB47lJxFEGTMj0Xkt3QJd0zqii1tMkCXO7FyEFFb";
 
   // mengambil data canopusAPI
   const resContent = await fetch(`http://canopusapi.test/api/content`, {

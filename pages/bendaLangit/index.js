@@ -57,7 +57,7 @@ export default function BendaLangit({
                 width={300}
                 height={300}
                 priority
-                className=""
+                className="w-80"
               />
             </div>
           </div>
@@ -165,12 +165,7 @@ export async function getServerSideProps() {
 
   // mengambil data index content pada canopusAPI
   const resContent = await fetch(
-    `http://canopusapi.test/api/content?category=planet`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    `http://canopusapi.test/api/content?category=planet`
   );
   const content = await resContent.json();
   const dataContent = content.data;
@@ -179,12 +174,7 @@ export async function getServerSideProps() {
 
   // mengambil data planet pada canopusAPI
   const resContentPlanet = await fetch(
-    `http://canopusapi.test/api/content?category=planet`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    `http://canopusapi.test/api/content?category=planet`
   );
   const contentPlanet = await resContentPlanet.json();
   const dataContentPlanet = contentPlanet.data;
@@ -192,12 +182,7 @@ export async function getServerSideProps() {
 
   // mengambil data bintang pada canopusAPI
   const resContentStar = await fetch(
-    `http://canopusapi.test/api/content?category=bintang`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    `http://canopusapi.test/api/content?category=bintang`
   );
   const contentStar = await resContentStar.json();
   const dataContentStar = contentStar.data;
@@ -205,12 +190,7 @@ export async function getServerSideProps() {
 
   // mengambil data rasi bintang pada canopusAPI
   const resContentConstellation = await fetch(
-    `http://canopusapi.test/api/content?category=rasi bintang`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    `http://canopusapi.test/api/content?category=rasi bintang`
   );
   const contentConstellation = await resContentConstellation.json();
   const dataContentConstellation = contentConstellation.data;
@@ -218,12 +198,7 @@ export async function getServerSideProps() {
 
   // mengambil data lainnya pada canopusAPI
   const resContentOthers = await fetch(
-    `http://canopusapi.test/api/content?category=lainnya di angkasa`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    `http://canopusapi.test/api/content?category=lainnya di angkasa`
   );
   const contentOthers = await resContentOthers.json();
   const dataContentOthers = contentOthers.data;

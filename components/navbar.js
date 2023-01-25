@@ -13,15 +13,14 @@ export default function Navbar() {
       <header className="absolute z-50 px-5 py-3 w-full text-textMainColor body-font bg-gradient-to-b from-gray-900">
         <div className="relative w-full mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <Link
+            as="image"
             rel="preload"
             href="/beranda"
-            as="image"
-            className="absolute mb-4  md:mb-0"
+            className="absolute mb-4 md:mb-0"
           >
             <Image
               src="/imgs/logo.png"
               alt="Astro 4"
-              as="image"
               priority={true}
               width={300}
               height={300}
