@@ -1,8 +1,30 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function BtnHambergerProfil() {
+  const { session } = useSession();
+
+  console.log(session);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    const res = await axios({
+      method: "PUT",
+      url: `http://canopusapi.test/api/logout`,
+      headers: {
+        Authorization: `Bearer ${tokenAccess}`,
+      },
+      data: {
+        username: userInfo.username,
+        email: userInfo.email,
+        bio: userInfo.bio,
+      },
+    });
+  };
+
   return (
     <>
       <Menu as="div" className="relative w-fit mt-1">
@@ -35,8 +57,32 @@ export default function BtnHambergerProfil() {
             <Menu.Item>
               <div className="group hover:bg-secondColorHover rounded-t-lg font-semibold transition ease-in-out hover:-translate-y-1 duration-300">
                 <a
-                  href="/dashboard/profil/editProfile"
+                  href="/profile/favorite"
                   className="flex text-gray-200 w-full items-center cursor-pointer text-sm rounded-t-md px-2 py-2 hover:bg-opacity-20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-6 h-6 mr-2 stroke-gray-200"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                    />
+                  </svg>
+                  Favorite
+                </a>
+              </div>
+            </Menu.Item>
+            <Menu.Item>
+              <div className="group hover:bg-secondColorHover font-semibold transition ease-in-out hover:-translate-y-1 duration-300">
+                <a
+                  href="profile/pengaturanProfile"
+                  className="flex text-gray-200 w-full items-center cursor-pointer text-sm px-2 py-2 hover:bg-opacity-20"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
