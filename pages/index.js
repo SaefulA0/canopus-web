@@ -4,6 +4,7 @@ import { Inter } from "@next/font/google";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import NavbarExample from "../components/navbarExample";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,9 @@ export default function Beranda() {
         <link rel="icon" href="/imgs/MiniLogo.png" />
       </Head>
       <main>
-        <section>
-          <div className="h-screen bg-[#282F6A] relative flex flex-col items-center justify-center">
+        <section className="relative w-full h-screen bg-[#282F6A] ">
+          <NavbarExample />
+          <div className="h-full flex flex-col items-center justify-center">
             <Image
               src="/imgs/logo.png"
               alt="Canopus Logo"

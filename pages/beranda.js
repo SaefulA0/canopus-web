@@ -16,10 +16,10 @@ export default function beranda({ dataContent }) {
     <Layout title="Beranda">
       <main>
         {/* <Navbar /> */}
-        <section className="h-screen bg-heroBG bg-center bg-cover bg-no-repeat flex justify-center items-center text-gray-600 body-font">
+        <section className="pl-20 h-screen bg-heroBG bg-center bg-cover bg-no-repeat flex justify-center items-center text-gray-600 body-font">
           <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div
-              data-aos="zoom-in-right"
+              data-aos="fade-right"
               data-aos-duration="500"
               data-aos-anchor-placement="top-center"
               className="lg:flex-grow w-fit md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
@@ -50,11 +50,19 @@ export default function beranda({ dataContent }) {
         <section className="min-h-screen p-32 bg-homeAbout2BG bg-no-repeat bg-cover">
           <div className="container">
             <div className="pb-12">
-              <h1 className="underline text-3xl font-bold text-white text-center">
+              <h1
+                data-aos="fade-right"
+                data-aos-duration="500"
+                className="underline text-3xl font-bold text-white text-center"
+              >
                 Sekilas tentang Canopus
               </h1>
             </div>
-            <div className="flex flex-wrap md:flex-nowrap gap-5 md:gap-16 justify-center items-center">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="500"
+              className="flex flex-wrap md:flex-nowrap gap-5 md:gap-16 justify-center items-center"
+            >
               <div className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3">
                 <h1 className="pt-5 text-white text-xl font-bold">Canopus?</h1>
                 <p className="p-3 text-white text-opacity-80">
@@ -70,7 +78,11 @@ export default function beranda({ dataContent }) {
                   className="mx-auto w-56"
                 />
               </div>
-              <div className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3">
+              <div
+                data-aos="fade-right"
+                data-aos-duration="600"
+                className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3"
+              >
                 <h1 className="pt-5 text-white text-xl font-bold">Tujuan</h1>
                 <p className="p-3 text-white text-opacity-80">
                   Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do
@@ -86,7 +98,11 @@ export default function beranda({ dataContent }) {
                 />
               </div>
               <div>
-                <div className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3">
+                <div
+                  data-aos="fade-right"
+                  data-aos-duration="700"
+                  className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3"
+                >
                   <h1 className="pt-5 text-white text-xl font-bold">Misi</h1>
                   <p className="p-3 text-white text-opacity-80">
                     Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed
