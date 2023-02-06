@@ -2,8 +2,15 @@ import Layout from "../../components/layout";
 import Link from "next/link";
 import Image from "next/image";
 import CardKontenOthers from "../../components/cards/cardContentOthers";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function Lainnya({ dataContentOthers }) {
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
     <Layout title="Daftar Benda Langit Lainnya">
       <main>
@@ -12,11 +19,15 @@ export default function Lainnya({ dataContentOthers }) {
             <div className="flex flex-row">
               <div className="basis-1/3"></div>
               <div className="basis-full w-full">
-                <h1 className="text-4xl pt-14 pb-10 text-center font-bold text-white ">
+                <h1
+                  data-aos="fade-right"
+                  data-aos-duration="600"
+                  className="text-4xl pt-14 pb-10 text-center font-bold text-white "
+                >
                   Selamat datang di samudra angkasa, Astroners!
                 </h1>
                 {/* Search */}
-                <form action="">
+                <form data-aos="fade-right" data-aos-duration="600" action="">
                   <div class="relative">
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                       <svg
@@ -41,6 +52,8 @@ export default function Lainnya({ dataContentOthers }) {
               <Image
                 src="/imgs/astronout/astro7.png"
                 alt="astro 7"
+                data-aos="fade-up"
+                data-aos-duration="800"
                 width={300}
                 height={300}
                 priority
@@ -49,18 +62,24 @@ export default function Lainnya({ dataContentOthers }) {
             </div>
           </div>
           {/* Section list */}
-          <div class="text-center pt-32">
-            <h1 class="text-3xl pb-10 font-bold text-white underline">
+          <div class="text-center pt-20">
+            <h1
+              data-aos="fade-right"
+              data-aos-duration="600"
+              class="text-3xl font-bold text-white underline"
+            >
               Benda Langit Lainnya
             </h1>
           </div>
           {/* Card */}
           <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
             {dataContentOthers.map((dataContentOthers) => (
-              <CardKontenOthers
-                key={dataContentOthers.id}
-                dataContentOthers={dataContentOthers}
-              />
+              <div data-aos="fade-up" data-aos-duration="800">
+                <CardKontenOthers
+                  key={dataContentOthers.id}
+                  dataContentOthers={dataContentOthers}
+                />
+              </div>
             ))}
           </div>
         </section>

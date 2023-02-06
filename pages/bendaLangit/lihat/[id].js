@@ -1,9 +1,10 @@
 import Image from "next/legacy/image";
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import { useEffect, useState } from "react";
 import AOS from "aos";
+import axios from "axios";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -20,11 +21,15 @@ import CardKontenOthers from "../../../components/cards/cardContentOthers";
 export default function lihatBenda({
   ytIdVideo,
   dataContentShow,
+  dataContentFavorite,
   dataUniqContent,
   dataContentPlanets,
   dataContentStars,
   dataContentOthers,
   dataContentConstellations,
+  usernameID,
+  idFav,
+  token,
 }) {
   const { data: session, status } = useSession();
 
@@ -32,18 +37,29 @@ export default function lihatBenda({
   useEffect(() => {
     AOS.init();
   });
+  SwiperCore.use([Autoplay]);
 
   // menghapus html element dalam data intro
-  const [textContent, setTextContent] = useState(dataContentShow.intro);
+  const [textContentIntro, setTextContentIntro] = useState(
+    dataContentShow.intro
+  );
+  const [textContentHistory, setTextContentHistory] = useState(
+    dataContentShow.history
+  );
 
   useEffect(() => {
     const regex = /(<([^>]+)>)/gi;
-    const newString = textContent.replace(regex, "");
-    setTextContent(newString);
+    const newString = textContentIntro.replace(regex, "");
+    setTextContentIntro(newString);
   }, []);
 
-  SwiperCore.use([Autoplay]);
+  useEffect(() => {
+    const regex = /(<([^>]+)>)/gi;
+    const newString = textContentHistory.replace(regex, "");
+    setTextContentHistory(newString);
+  }, []);
 
+  // pengkondisian untuk setiap card content
   const TotalHalUnik = dataUniqContent.length;
   let halUnik;
   if (TotalHalUnik >= 4) {
@@ -84,6 +100,44 @@ export default function lihatBenda({
     Constellations = TotalConstellations;
   }
 
+  // handleFavorite
+  const [favorite, setFavorite] = useState();
+  const iduser = usernameID;
+  const idcontent = dataContentShow.id;
+  const tokenAccess = token;
+
+  useEffect(() => {
+    if (dataContentFavorite == 0) {
+      setFavorite(false);
+    } else {
+      setFavorite(true);
+    }
+  }, []);
+
+  const handleFavorite = async (e) => {
+    e.preventDefault();
+
+    const res = await axios({
+      method: "POST",
+      url: `http://canopusapi.test/api/favorite?username=${iduser}&content_id=${idcontent}`,
+      headers: {
+        Authorization: `Bearer ${tokenAccess}`,
+      },
+    }).then(location.reload());
+  };
+
+  const handleDeleteFavorite = async (e) => {
+    e.preventDefault();
+
+    const res = await axios({
+      method: "DELETE",
+      url: `http://canopusapi.test/api/favorite/${idFav}`,
+      headers: {
+        Authorization: `Bearer ${tokenAccess}`,
+      },
+    }).then(location.reload());
+  };
+
   return (
     <Layout title="Lihat">
       <main>
@@ -119,7 +173,7 @@ export default function lihatBenda({
               )}
             </div>
             <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-              <div className="lg:flex-grow w-fit md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+              <div className="lg:flex-grow w-fit md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                 <h1
                   data-aos="fade-right"
                   data-aos-duration="500"
@@ -139,11 +193,12 @@ export default function lihatBenda({
               </div>
             </div>
             <button className="absolute right-16 bottom-16">
-              {status === "authenticated" && (
+              {/* {status === "authenticated" && (
                 <div
                   data-aos="fade-top"
                   data-aos-duration="800"
                   className="absolute bottom-6 right-6"
+                  onClick={handleFavorite}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -163,6 +218,51 @@ export default function lihatBenda({
               )}
               {status === "unauthenticated" && (
                 <div className="absolute hidden bottom-6 right-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-10 h-10 stroke-gray-100 hover:fill-secondColorHover hover:stroke-secondColorHover transition ease-in-out hover:-translate-y-1 duration-300"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                    />
+                  </svg>
+                </div>
+              )} */}
+              {favorite ? (
+                <div
+                  data-aos="fade-top"
+                  data-aos-duration="800"
+                  className="absolute bottom-6 right-6"
+                  onClick={handleDeleteFavorite}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-10 h-10 stroke-secondColor fill-secondColor hover:fill-secondColorHover hover:stroke-secondColorHover transition ease-in-out hover:-translate-y-1 duration-300"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                    />
+                  </svg>
+                </div>
+              ) : (
+                <div
+                  data-aos="fade-top"
+                  data-aos-duration="800"
+                  className="absolute bottom-6 right-6"
+                  onClick={handleFavorite}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -246,7 +346,7 @@ export default function lihatBenda({
                     data-aos-duration="700"
                     className="indent-8 text-justify text-opacity-80 leading-relaxed"
                   >
-                    {textContent}
+                    {textContentIntro}
                   </p>
                 </div>
                 {/* sejarah */}
@@ -263,7 +363,7 @@ export default function lihatBenda({
                     data-aos-duration="700"
                     className="indent-8 text-justify text-opacity-80 leading-relaxed"
                   >
-                    {dataContentShow.history}
+                    {textContentHistory}
                   </p>
                 </div>
               </div>
@@ -439,10 +539,13 @@ export default function lihatBenda({
 }
 export async function getServerSideProps(context) {
   // mengambil token session
-  const token = "32|1ozGuygyae9OX07cKufyVlnjhJmfJ3D5O9KYGEOK";
+  const session = await getSession(context);
+  const token = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data content show canopusAPI
   const { id } = context.params;
+
   const resContentShow = await fetch(
     `http://canopusapi.test/api/content/${id}`,
     {
@@ -453,6 +556,22 @@ export async function getServerSideProps(context) {
   );
   const contentShow = await resContentShow.json();
   const dataContentShow = contentShow.data;
+
+  // mengambil data favorit
+  const resContentFavorite = await fetch(
+    `http://canopusapi.test/api/favorite?username=${username}&content=${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const contentFavorite = await resContentFavorite.json();
+  const dataContentFavorite = contentFavorite.data;
+  const object_id = [];
+  dataContentFavorite.forEach(function (entity) {
+    object_id.push(entity.id);
+  });
 
   // mengambil data Hal Unik yang pernah terjadi
   const eventContent = dataContentShow.event;
@@ -537,6 +656,11 @@ export async function getServerSideProps(context) {
       dataContentStars: dataContentStar,
       dataContentConstellations: dataContentConstellation,
       dataContentOthers: dataContentOthers,
+      dataContentFavorite: dataContentFavorite,
+      usernameID: username,
+      idFav: object_id,
+      idcontent: id,
+      token: token,
     },
   };
 }
