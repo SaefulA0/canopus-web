@@ -1,7 +1,16 @@
 import Image from "next/legacy/image";
-import Layout from "../../../components/layout";
 import { useSession } from "next-auth/react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import { useEffect, useState } from "react";
+import AOS from "aos";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "aos/dist/aos.css";
+
+import Layout from "../../../components/layout";
 import CardHalUnik from "../../../components/cards/cardHalUnik";
 import CardKontenPlanets from "../../../components/cards/cardContentPlanets";
 import CardKontenStars from "../../../components/cards/cardContentStars";
@@ -18,6 +27,62 @@ export default function lihatBenda({
   dataContentConstellations,
 }) {
   const { data: session, status } = useSession();
+
+  // memberikan efek pada setiap element
+  useEffect(() => {
+    AOS.init();
+  });
+
+  // menghapus html element dalam data intro
+  const [textContent, setTextContent] = useState(dataContentShow.intro);
+
+  useEffect(() => {
+    const regex = /(<([^>]+)>)/gi;
+    const newString = textContent.replace(regex, "");
+    setTextContent(newString);
+  }, []);
+
+  SwiperCore.use([Autoplay]);
+
+  const TotalHalUnik = dataUniqContent.length;
+  let halUnik;
+  if (TotalHalUnik >= 4) {
+    halUnik = 4;
+  } else {
+    halUnik = TotalHalUnik;
+  }
+
+  const TotalPlanet = dataContentPlanets.length;
+  let planet;
+  if (TotalPlanet >= 4) {
+    planet = 4;
+  } else {
+    planet = TotalPlanet;
+  }
+
+  const TotalOthers = dataContentOthers.length;
+  let others;
+  if (TotalOthers >= 4) {
+    others = 4;
+  } else {
+    others = TotalOthers;
+  }
+
+  const TotalStars = dataContentStars.length;
+  let stars;
+  if (TotalStars >= 4) {
+    stars = 4;
+  } else {
+    stars = TotalStars;
+  }
+
+  const TotalConstellations = dataContentConstellations.length;
+  let Constellations;
+  if (TotalConstellations >= 4) {
+    Constellations = 4;
+  } else {
+    Constellations = TotalConstellations;
+  }
 
   return (
     <Layout title="Lihat">
@@ -55,17 +120,31 @@ export default function lihatBenda({
             </div>
             <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
               <div className="lg:flex-grow w-fit md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 className="title-font text-4xl mb-2 font-bold text-gray-100">
+                <h1
+                  data-aos="fade-right"
+                  data-aos-duration="500"
+                  data-aos-anchor-placement="top-center"
+                  className="title-font text-4xl mb-2 font-bold text-gray-100"
+                >
                   {dataContentShow.title}
                 </h1>
-                <p className="mb-8 leading-relaxed text-secondColor italic font-semibold">
+                <p
+                  data-aos="fade-right"
+                  data-aos-duration="700"
+                  data-aos-anchor-placement="top-center"
+                  className="mb-8 leading-relaxed text-secondColor italic font-semibold"
+                >
                   Planet Biru
                 </p>
               </div>
             </div>
             <button className="absolute right-16 bottom-16">
               {status === "authenticated" && (
-                <div className="absolute bottom-6 right-6">
+                <div
+                  data-aos="fade-top"
+                  data-aos-duration="800"
+                  className="absolute bottom-6 right-6"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -107,27 +186,47 @@ export default function lihatBenda({
         <section className="p-10 shadow-lg bg-mainColor flex justify-center items-center">
           <div className="flex text-gray-200">
             <div className="w-64 text-center">
-              <h3 className="font-bold text-secondColor mb-2">
+              <h3
+                data-aos="fade-right"
+                data-aos-duration="500"
+                className="font-bold text-secondColor mb-2"
+              >
                 Jarak Dari Bumi
               </h3>
-              <p className="font-medium">{dataContentShow.distance}</p>
+              <p
+                data-aos="fade-right"
+                data-aos-duration="800"
+                className="font-medium"
+              >
+                {dataContentShow.distance}
+              </p>
             </div>
             <div className="w-64 text-center">
-              <h3 className="font-bold text-secondColor mb-2">Koordinat</h3>
-              <p className="font-medium">{dataContentShow.coordinate}</p>
-            </div>
-            {/* <div className="w-64 text-center ">
-              <h3 className="font-bold text-secondColor mb-2">
-                Jarak Dari Bulan
+              <h3
+                data-aos="fade-left"
+                data-aos-duration="500"
+                className="font-bold text-secondColor mb-2"
+              >
+                Koordinat
               </h3>
-              <p className="font-medium">{dataContentShow.coordinate}</p>
-            </div> */}
+              <p
+                data-aos="fade-left"
+                data-aos-duration="800"
+                className="font-medium"
+              >
+                {dataContentShow.coordinate}
+              </p>
+            </div>
           </div>
         </section>
         {/* Informasi planet */}
         <div className="min-h-screen px-16 py-24 bg-contentBG bg-center bg-cover bg-no-repeat flex-col justify-center items-center text-gray-600 body-font">
           <div className=" min-h-screen px-10 py-10 w-full rounded-xl bg-mainColor text-textMainColor">
-            <h2 className="text-4xl font-semibold underline mb-8">
+            <h2
+              data-aos="fade-right"
+              data-aos-duration="400"
+              className="text-4xl font-semibold underline mb-8"
+            >
               {dataContentShow.title}
             </h2>
             <div className="flex">
@@ -135,32 +234,54 @@ export default function lihatBenda({
               <div className="basis-full whitespace-normal">
                 {/* penjelasan umum */}
                 <div className="mb-12">
-                  <h3 className="text-xl font-medium mb-2">
+                  <h3
+                    data-aos="fade-right"
+                    data-aos-duration="500"
+                    className="text-xl font-medium mb-2"
+                  >
                     Apa itu {dataContentShow.title}?
                   </h3>
-                  <p className="indent-8 text-justify text-opacity-80 leading-relaxed">
-                    {dataContentShow.intro}
+                  <p
+                    data-aos="fade-right"
+                    data-aos-duration="700"
+                    className="indent-8 text-justify text-opacity-80 leading-relaxed"
+                  >
+                    {textContent}
                   </p>
                 </div>
                 {/* sejarah */}
                 <div className="mb-20">
-                  <h3 className="text-xl font-medium mb-2">
+                  <h3
+                    data-aos="fade-right"
+                    data-aos-duration="500"
+                    className="text-xl font-medium mb-2"
+                  >
                     Sejarah {dataContentShow.title}
                   </h3>
-                  <p className="indent-8 text-justify text-opacity-80 leading-relaxed">
+                  <p
+                    data-aos="fade-right"
+                    data-aos-duration="700"
+                    className="indent-8 text-justify text-opacity-80 leading-relaxed"
+                  >
                     {dataContentShow.history}
                   </p>
                 </div>
               </div>
               {/* basis konten kanan */}
               <div className="basis-1/2 ml-10">
-                <h3 className="text-xl font-semibold mb-4">
+                <h3
+                  data-aos="fade-top"
+                  data-aos-duration="600"
+                  className="text-xl font-semibold mb-4"
+                >
                   Video mengenai {dataContentShow.title}
                 </h3>
                 <div className="relative w-full aspect-video flex items-center justify-center">
                   {ytIdVideo.map((ytIdVideo) => {
                     return (
                       <iframe
+                        data-aos="fade-bottom"
+                        data-aos-duration="1000"
                         key={ytIdVideo}
                         className="embed-responsive-item absolute top-0 right-0 bottom-0 left-0 w-full h-full"
                         src={`https://www.youtube.com/embed/${ytIdVideo}`}
@@ -170,7 +291,11 @@ export default function lihatBenda({
                     );
                   })}
                 </div>
-                <div className="flex justify-center mt-24">
+                <div
+                  data-aos="fade-left"
+                  data-aos-duration="500"
+                  className="flex justify-center mt-24"
+                >
                   <Image
                     alt="hero"
                     width={276}
@@ -183,60 +308,126 @@ export default function lihatBenda({
             </div>
             <div>
               <h2 className="text-center text-2xl font-semibold underline mb-8">
-                Hal Unik Yang Pernah Terjadi Di Bumi
+                Hal Unik Yang Pernah Terjadi Di {dataContentShow.event}
               </h2>
-              <div className="flex pt-2 w-full gap-6 overflow-x-scroll [&>div]:flex-shrink-0 items-center">
-                {dataUniqContent.map((dataUniqContent) => (
-                  <CardHalUnik dataUniqContent={dataUniqContent} />
-                ))}
+              <div className="flex">
+                <Swiper
+                  data-aos="fade-top"
+                  data-aos-duration="500"
+                  data-aos-anchor-placement="center-bottom"
+                  slidesPerView={halUnik}
+                  pagination={{ type: "progressbar" }}
+                  navigation={true}
+                  modules={[Pagination, Navigation]}
+                  className="mySwiper"
+                >
+                  {dataUniqContent.map((dataUniqContent) => (
+                    <SwiperSlide key={dataUniqContent.id}>
+                      <CardHalUnik dataUniqContent={dataUniqContent} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center mt-16 px-10 py-10 w-full rounded-xl shadow-lg bg-mainColor text-textMainColor">
+          <div className="flex flex-col items-center mt-16 px-10 py-10 rounded-xl shadow-lg bg-mainColor text-textMainColor">
             <h2 className="text-2xl text-center font-semibold underline mb-6">
-              Planet Lainnya
+              {dataContentShow.category} Lainnya
             </h2>
-            <div className="flex w-full pt-2 gap-6 overflow-x-scroll [&>div]:flex-shrink-0 items-center">
+            <div className="flex w-full">
               {dataContentShow.category == "Planet" && (
                 <>
-                  {dataContentPlanets.map((dataContentPlanets) => (
-                    <CardKontenPlanets
-                      key={dataContentPlanets.id}
-                      dataContentPlanets={dataContentPlanets}
-                    />
-                  ))}
+                  <Swiper
+                    data-aos="fade-top"
+                    data-aos-duration="500"
+                    data-aos-anchor-placement="center-bottom"
+                    slidesPerView={planet}
+                    pagination={{ type: "progressbar" }}
+                    navigation={false}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                  >
+                    {dataContentPlanets.map((dataContentPlanets) => (
+                      <SwiperSlide key={dataContentPlanets.id}>
+                        <CardKontenPlanets
+                          dataContentPlanets={dataContentPlanets}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 </>
               )}
               {dataContentShow.category == "Bintang" && (
                 <>
-                  {dataContentStars.map((dataContentStars) => (
-                    <CardKontenStars
-                      key={dataContentStars.id}
-                      dataContentStars={dataContentStars}
-                    />
-                  ))}
+                  <Swiper
+                    data-aos="fade-top"
+                    data-aos-duration="500"
+                    data-aos-anchor-placement="center-bottom"
+                    slidesPerView={stars}
+                    pagination={{ type: "progressbar" }}
+                    navigation={false}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                  >
+                    {dataContentStars.map((dataContentStars) => (
+                      <SwiperSlide key={dataContentStars.id}>
+                        <CardKontenStars
+                          key={dataContentStars.id}
+                          dataContentStars={dataContentStars}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 </>
               )}
               {dataContentShow.category == "Rasi Bintang" && (
                 <>
-                  {dataContentConstellations.map(
-                    (dataContentConstellations) => (
-                      <CardKontenConstellations
-                        key={dataContentConstellations.id}
-                        dataContentConstellations={dataContentConstellations}
-                      />
-                    )
-                  )}
+                  <Swiper
+                    data-aos="fade-top"
+                    data-aos-duration="500"
+                    data-aos-anchor-placement="center-bottom"
+                    slidesPerView={Constellations}
+                    pagination={{ type: "progressbar" }}
+                    navigation={false}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                  >
+                    {dataContentConstellations.map(
+                      (dataContentConstellations) => (
+                        <SwiperSlide key={dataContentConstellations.id}>
+                          <CardKontenConstellations
+                            key={dataContentConstellations.id}
+                            dataContentConstellations={
+                              dataContentConstellations
+                            }
+                          />
+                        </SwiperSlide>
+                      )
+                    )}
+                  </Swiper>
                 </>
               )}
               {dataContentShow.category == "Lainnya di Angkasa" && (
                 <>
-                  {dataContentOthers.map((dataContentOthers) => (
-                    <CardKontenOthers
-                      key={dataContentOthers.id}
-                      dataContentOthers={dataContentOthers}
-                    />
-                  ))}
+                  <Swiper
+                    data-aos="fade-top"
+                    data-aos-duration="500"
+                    data-aos-anchor-placement="center-bottom"
+                    slidesPerView={others}
+                    pagination={{ type: "progressbar" }}
+                    navigation={false}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                  >
+                    {dataContentOthers.map((dataContentOthers) => (
+                      <SwiperSlide key={dataContentOthers.id}>
+                        <CardKontenOthers
+                          key={dataContentOthers.id}
+                          dataContentOthers={dataContentOthers}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 </>
               )}
             </div>
@@ -283,7 +474,7 @@ export async function getServerSideProps(context) {
   const APIkey2 = "AIzaSyBUNRlo8oU4M2rLwScD9MHhFJk_puTiCKw";
 
   const response = await fetch(
-    `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${idVideo}&key=${APIkey1}`
+    `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${idVideo}&key=${APIkey2}`
   );
   const ytdata = await response.json();
   const ytdataItem = ytdata.items;

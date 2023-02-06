@@ -8,7 +8,7 @@ export default function CardKontenPlanets({ dataContentPlanets }) {
     <>
       <div
         key={dataContentPlanets.id}
-        className="relative p-1 bg-gradient-to-tr from-blue-900 via-blue-800 to-blue-700 rounded-lg z-10 shadow-md cursor-pointer mb-6 transition ease-in-out hover:-translate-y-1 duration-300"
+        className="relative w-fit h-fit mt-4 mr-4 p-1 bg-gradient-to-tr from-blue-900 via-blue-800 to-blue-700 rounded-lg z-10 shadow-md cursor-pointer mb-6 transition ease-in-out hover:-translate-y-1 duration-300"
       >
         <Link href={`/bendaLangit/lihat/${dataContentPlanets.id}`}>
           {dataContentPlanets.mainpicture ? (

@@ -9,6 +9,9 @@ import CardKontenPlanets from "../../components/cards/cardContentPlanets";
 import CardContentStars from "../../components/cards/cardContentStars";
 import CardKontenConstellations from "../../components/cards/cardContentConstellation";
 import CardKontenOthers from "../../components/cards/cardContentOthers";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function BendaLangit({
   dataContentIndex,
@@ -17,7 +20,11 @@ export default function BendaLangit({
   dataContentOthers,
   dataContentConstellations,
 }) {
+  useEffect(() => {
+    AOS.init();
+  });
   SwiperCore.use([Autoplay]);
+
   return (
     <Layout title="Daftar Benda Langit">
       <main>
@@ -26,11 +33,15 @@ export default function BendaLangit({
             <div className="flex flex-row">
               <div className="basis-1/3"></div>
               <div className="basis-full w-full">
-                <h1 className="text-4xl pt-14 pb-10 text-center font-bold text-white ">
+                <h1
+                  data-aos="fade-right"
+                  data-aos-duration="500"
+                  className="text-4xl pt-14 pb-10 text-center font-bold text-white "
+                >
                   Selamat datang di samudra angkasa, Astroners!
                 </h1>
                 {/* Search */}
-                <form action="">
+                <form data-aos="fade-right" data-aos-duration="500" action="">
                   <div className="relative">
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                       <svg
@@ -58,11 +69,16 @@ export default function BendaLangit({
                 height={300}
                 priority
                 className="w-80"
+                data-aos="fade-left"
+                data-aos-duration="500"
               />
             </div>
           </div>
           {/* Carousel Card */}
           <Swiper
+            data-aos="fade-top"
+            data-aos-duration="500"
+            data-aos-anchor-placement="center-bottom"
             slidesPerView={1}
             loop={true}
             autoplay={{
@@ -78,79 +94,121 @@ export default function BendaLangit({
           {/* Section list */}
           <div>
             <div className=" ml-4 pt-32 flex justify-between px-20">
-              <h1 className="text-3xl font-bold text-white">Planet</h1>
-              <Link
-                href="/bendaLangit/planet"
-                className="inline-flex text-gray-100 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg"
+              <h1
+                data-aos="fade-right"
+                data-aos-duration="500"
+                className="text-3xl font-bold text-white"
               >
-                Lihat selengkapnya
+                Planet
+              </h1>
+              <Link
+                data-aos="fade-top"
+                data-aos-duration="800"
+                href="/bendaLangit/planet"
+              >
+                <span className="inline-flex text-gray-50 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg">
+                  Lihat selengkapnya
+                </span>
               </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
               {dataContentPlanets.map((dataContentPlanets) => (
-                <CardKontenPlanets
-                  key={dataContentPlanets.id}
-                  dataContentPlanets={dataContentPlanets}
-                />
+                <div data-aos="fade-top" data-aos-duration="500">
+                  <CardKontenPlanets
+                    key={dataContentPlanets.id}
+                    dataContentPlanets={dataContentPlanets}
+                  />
+                </div>
               ))}
             </div>
           </div>
           <div>
             <div className=" ml-4 flex justify-between px-20">
-              <h1 className="text-3xl font-bold text-white">Bintang</h1>
-              <Link
-                href="/bendaLangit/bintang"
-                className="inline-flex text-gray-100 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg"
+              <h1
+                data-aos="fade-right"
+                data-aos-duration="500"
+                className="text-3xl font-bold text-white"
               >
-                Lihat selengkapnya
+                Bintang
+              </h1>
+              <Link
+                data-aos="fade-top"
+                data-aos-duration="800"
+                href="/bendaLangit/bintang"
+              >
+                <span className="inline-flex text-gray-50 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg">
+                  Lihat selengkapnya
+                </span>
               </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
               {dataContentStars.map((dataContentStars) => (
-                <CardContentStars
-                  key={dataContentStars.id}
-                  dataContentStars={dataContentStars}
-                />
+                <div data-aos="fade-top" data-aos-duration="500">
+                  <CardContentStars
+                    key={dataContentStars.id}
+                    dataContentStars={dataContentStars}
+                  />
+                </div>
               ))}
             </div>
           </div>
           <div>
             <div className=" ml-4 flex justify-between px-20">
-              <h1 className="text-3xl font-bold text-white">Rasi Bintang</h1>
-              <Link
-                href="/bendaLangit/rasiBintang"
-                className="inline-flex text-gray-100 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg"
+              <h1
+                data-aos="fade-right"
+                data-aos-duration="500"
+                className="text-3xl font-bold text-white"
               >
-                Lihat selengkapnya
+                Rasi Bintang
+              </h1>
+              <Link
+                data-aos="fade-top"
+                data-aos-duration="800"
+                href="/bendaLangit/rasiBintang"
+              >
+                <span className="inline-flex text-gray-50 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg">
+                  Lihat selengkapnya
+                </span>
               </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
               {dataContentConstellations.map((dataContentConstellations) => (
-                <CardKontenConstellations
-                  key={dataContentConstellations.id}
-                  dataContentConstellations={dataContentConstellations}
-                />
+                <div data-aos="fade-top" data-aos-duration="500">
+                  <CardKontenConstellations
+                    key={dataContentConstellations.id}
+                    dataContentConstellations={dataContentConstellations}
+                  />
+                </div>
               ))}
             </div>
           </div>
           <div>
             <div className=" ml-4 flex justify-between px-20">
-              <h1 className="text-3xl font-bold text-white">
+              <h1
+                data-aos="fade-right"
+                data-aos-duration="500"
+                className="text-3xl font-bold text-white"
+              >
                 Benda Langit Lainnya
               </h1>
               <Link
+                data-aos="fade-top"
+                data-aos-duration="800"
                 href="/bendaLangit/lainnya"
-                className="inline-flex text-gray-100 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg"
               >
-                Lihat selengkapnya
+                <span className="inline-flex text-gray-50 opacity-80 focus:outline-none hover:underline hover:opacity-100 hover:text-secondColor transition ease-in-out hover:-translate-y-1 duration-300 rounded-md text-lg">
+                  Lihat selengkapnya
+                </span>
               </Link>
             </div>
             <div className="justify-center flex flex-wrap gap-10 pt-10 pb-20">
               {dataContentOthers.map((dataContentOthers) => (
-                <CardKontenOthers
-                  key={dataContentOthers.id}
-                  dataContentOthers={dataContentOthers}
-                />
+                <div data-aos="fade-top" data-aos-duration="500">
+                  <CardKontenOthers
+                    key={dataContentOthers.id}
+                    dataContentOthers={dataContentOthers}
+                  />
+                </div>
               ))}
             </div>
           </div>
