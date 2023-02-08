@@ -1,8 +1,75 @@
 import Layout from "../layouts/layout";
 import Router, { useRouter } from "next/router";
+import { useState } from "react";
+import axios from "axios";
+import { getSession, useSession } from "next-auth/react";
 
-export default function createContents () {
+
+export default function createContents ({ token }) {
     const router = useRouter();
+    const tokenAccess = token;
+    const {data: session, status} = useSession();
+    const [title, setTitle] = useState('');
+    const [intro, setIntro] = useState('');
+    const [history, setHistory] = useState('');
+    const [category, setCategory] = useState('');
+    const [coordinate, setCoordinate] = useState('');
+    const [distance, setDistance] = useState('');
+    const [event, setEvent] = useState('');
+    const [mainImg, setMainimg] = useState('');
+    const [img, setImg] = useState('');
+    const [trivia, setTrivia] = useState('');
+    const [videoid, setVideoid] = useState('');
+    
+    const [validation, setValidation] = useState({});
+
+    const handleFileChange = (e) => {
+
+      const imageData = e.target.files[0]
+      const imageData1 = e.target.files[0]
+
+      if (!imageData.type.match('image.*')){
+          setMainimg('');
+
+          return
+      }
+      if (!imageData1.type.match('image.*')){
+          setImg('');
+
+          return
+      }
+      setMainimg(imageData);
+      setImg(imageData1);
+  }
+
+  const createPost = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      title: title,
+      intro: intro,
+      history: history,
+      category: category,
+      coordinate: coordinate,
+      distance: distance,
+      event: event,
+      mainImg: mainImg,
+      img: img,
+      trivia: trivia,
+      videoid: videoid,
+    }
+
+    
+    //send data to server
+    const res = await axios({
+      method: "POST",
+      url: `http://canopusapi.test/api/content`,
+      headers: {
+        Authorization: `Bearer ${tokenAccess}`,
+      },
+      data,
+    }).then('/dashboard/contents');    
+};
     return(
         <Layout title="Create Contents">
         <main className="font-inter">
@@ -12,7 +79,7 @@ export default function createContents () {
               {/* flex kiri */}
               <div className="w-full h-fit container rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
                 {/* form untuk mengisi data anggota baru */}
-                <form>
+                <form onSubmit={createPost}>
                   <div className="flex flex-col justify-center">
                     <div className="my-2">
                       <label className="block">
@@ -22,6 +89,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="title"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
                           className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -34,6 +103,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="intro"
+                          value={intro}
+                          onChange={(e) => setIntro(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -46,6 +117,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="history"
+                          value={history}
+                          onChange={(e) => setHistory(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -58,6 +131,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="category"
+                          value={category}
+                          onChange={(e) => setCategory(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -70,6 +145,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="coordinate"
+                          value={coordinate}
+                          onChange={(e) => setCoordinate(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -82,6 +159,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="distance"
+                          value={distance}
+                          onChange={(e) => setDistance(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -94,6 +173,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="event"
+                          value={event}
+                          onChange={(e) => setEvent(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -107,6 +188,7 @@ export default function createContents () {
                           type="file"
                           id="file_input"
                           name="mainPicture"
+                          onChange={handleFileChange}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -120,7 +202,9 @@ export default function createContents () {
                           type="file"
                           id="multiple_files"
                           name="pictures"
+                          onChange={handleFileChange}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                          multiple
                         />
                       </label>
                     </div>
@@ -132,6 +216,8 @@ export default function createContents () {
                         <input
                           type="text"
                           name="trivia"
+                          value={trivia}
+                          onChange={(e) => setTrivia(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -143,7 +229,9 @@ export default function createContents () {
                         </span>
                         <input
                           type="text"
-                          name="trivia"
+                          name="videoId"
+                          value={videoid}
+                          onChange={(e) => setVideoid(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
@@ -159,7 +247,7 @@ export default function createContents () {
                         Kembali
                       </button>
                       {/* button simpan */}
-                      <button className="w-full  px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#FF9636] hover:bg-orange-500 text-white shadow-md">
+                      <button className="w-full  px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#FF9636] hover:bg-orange-500 text-white shadow-md" type="submit">
                         Tambah
                       </button>
                     </div>
@@ -171,4 +259,14 @@ export default function createContents () {
         </main>
       </Layout>
     );
+}
+export async function getServerSideProps(req, res){
+  const session = await getSession(req, res);
+  const token = session.user.token;
+  
+  return{
+    props:{
+      token: token,
+    },
+  };
 }

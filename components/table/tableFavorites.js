@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function TableFavorites() {
+export default function TableFavorites({ dataFav }) {
   return (
     <>
       <div className="relative w-full h-5">
@@ -28,38 +28,24 @@ export default function TableFavorites() {
               <th scope="col" className="py-3 px-6 border-b-2">
                 Content id
               </th>
-              <th scope="col" className="py-3 px-6 border-b-2 text-center">
-                Status
-              </th>
-              <th scope="col" className="w-96 py-3 px-6 border-b-2">
-                Keterangan
-              </th>
               <th className="py-3 px-6 border-b-2 text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
-
-                <tr className="bg-white border-b">
+              {dataFav.map((favorite) => {
+                return(
+                  <tr key={favorite.id}className="bg-white border-b">
                   <th
                     scope="row"
                     className="py-4 text-center font-medium text-gray-900 whitespace-nowrap"
-                  >-
+                  >
+                    {favorite.id}
                   </th>
                   <td className="py-4 px-6">
-                    -
+                    {favorite.user_id}
                   </td>
                   <td className="py-4 px-6">
-                   -
-                  </td>
-                  <td className="py-4 px-3 text-center">
-                      <p className="text-gray-600 mx-auto px-4 py-1 rounded-full w-fit">
-                        -
-                      </p>
-                  </td>
-                  <td className="py-4 px-6">
-                      <p className="text-gray-600 px-4 py-1 rounded-full w-fit">
-                        -
-                      </p>
+                   {favorite.content_id}
                   </td>
                   <td className="py-4 px-6 text-center">
                     <Link href="/dashboard/favorites/editFavorites">
@@ -77,6 +63,8 @@ export default function TableFavorites() {
                       </button>
                   </td>
                 </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
