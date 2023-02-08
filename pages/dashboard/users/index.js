@@ -8,7 +8,6 @@ import Router from "next/router";
 
 export default function index ({ dataUser }) {
   const { data: session, status } = useSession();
-  console.log(dataUser);
   useEffect(() => {
     if (status === "unauthenticated") Router.replace("/dashboard/login");
   }, [status]);
@@ -18,7 +17,7 @@ export default function index ({ dataUser }) {
             <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           <div className="w-full min-h-screen">
             {/* tabel */}
-            <TableUsers/>
+            <TableUsers dataUser={dataUser}/>
           </div>
         </div>
         </Layout>
@@ -35,7 +34,7 @@ export async function getServerSideProps(req, res) {
       },
     };
   }
-  const token = session.user.access_token;
+  const token = session.user.token;
   const response = await fetch (
     `http://canopusapi.test/api/user`,
     {

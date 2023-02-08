@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function TableUsers({ data }) {
+export default function TableUsers({ dataUser }) {
   return (
     <>
       <div className="relative w-full h-5">
@@ -36,24 +36,24 @@ export default function TableUsers({ data }) {
             </tr>
           </thead>
           <tbody>
-              {data.map((users) => {
+              {dataUser.map((user) => {
                 return (
-                  <tr key={users.id}className="bg-white border-b">
+                  <tr key={user.id}className="bg-white border-b">
                   <th
                     scope="row"
-                    className="py-4 text-center font-medium text-gray-900 whitespace-nowrap"
+                    className="py-4 text-center font-medium text-black whitespace-nowrap"
                   >
-                    {users.id}
+                    {user.id}
                   </th>
                   <td className="py-4 px-6">
-                    {users.username}
+                    {user.username}
                   </td>
                   <td className="py-4 px-6">
-                    {users.email}
+                    {user.email}
                   </td>
                   <td className="py-4 px-3 text-center">
-                      <p className="text-gray-600 mx-auto px-4 py-1 rounded-full w-fit">
-                        {users.email}
+                      <p className="text-black mx-auto px-4 py-1 rounded-full w-fit">
+                      {user.bio}
                       </p>
                   </td>
                   <td className="py-4 px-6 text-center">
