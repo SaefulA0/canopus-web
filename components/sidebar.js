@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { signOut } from "next-auth/react";
 function SideNavbar() {
   return (
     <>
@@ -115,6 +115,13 @@ function SideNavbar() {
                   </span>
                 </div>
               </Link>
+              <button onClick={() => signOut()}>
+                <div className="flex mb-2 justify-start items-center gap-4 pl-5 mt-96 hover:bg-orange-500 p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
+                  <span className="text-base text-white group-hover:text-white font-medium ">
+                    Sign Out
+                  </span>
+                </div>
+              </button>
             </div>
           </div>
       </Disclosure>

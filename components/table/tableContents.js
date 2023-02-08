@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function TableContents() {
+export default function TableContents({ dataContent }) {
   return (
     <>
       <div className="relative w-full h-5">
@@ -44,37 +44,39 @@ export default function TableContents() {
             </tr>
           </thead>
           <tbody>
-                <tr className="bg-white border-b">
+            {dataContent.map((content) => {
+              return(
+                  <tr key={content.id}className="bg-white border-b">
                   <th
                     scope="row"
                     className="py-4 text-center font-medium text-gray-900 whitespace-nowrap"
                   >
-                    -
+                    {content.id}
                   </th>
                   <td className="py-4 px-6">
-                    -
+                    {content.title}
                   </td>
                   <td className="py-4 px-6">
-                   -
+                   {content.intro}
                   </td>
                   <td className="py-4 px-6 text-center">
                       <p className="text-gray-600 mx-auto px-4 py-1 rounded-full w-fit">
-                        -
+                        {content.history}
                       </p>
                   </td>
                   <td className="py-4 px-6">
                       <p className="text-gray-600 px-4 py-1 rounded-full w-fit">
-                        -
+                        {content.category}
                       </p>
                   </td>
                   <td className="py-4 px-6 text-center">
                       <p className="text-gray-600  px-4 py-1 rounded-full w-fit">
-                        -
+                        {content.coordinate}
                       </p>
                   </td>
                   <td className="py-4 px-3 text-center">
                       <p className="text-gray-600  px-4 py-1 rounded-full w-fit">
-                        -
+                        {content.distance}
                       </p>
                   </td>
                   <td className="py-4 px-6 text-center">
@@ -93,6 +95,8 @@ export default function TableContents() {
                       </button>
                   </td>
                 </tr>
+              );
+            })}               
           </tbody>
         </table>
       </div>
