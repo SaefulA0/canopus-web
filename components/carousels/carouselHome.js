@@ -11,7 +11,7 @@ export default function CarouselHome({ dataContent }) {
   return (
     <>
       <Carousel
-        slideInterval={5000}
+        slideInterval={10000}
         leftControl={
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -5,6 +5,7 @@ import CardContentStars from "../../components/cards/cardContentStars";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 
 export default function Bintang({ dataContentStars }) {
   useEffect(() => {
@@ -88,16 +89,26 @@ export default function Bintang({ dataContentStars }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
   // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data bintang pada canopusAPI
   const resContentStar = await fetch(
     `http://canopusapi.test/api/content?category=bintang`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tokenAccess}`,
       },
     }
   );

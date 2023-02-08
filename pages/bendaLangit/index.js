@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -218,7 +219,19 @@ export default function BendaLangit({
     </Layout>
   );
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
+
   // mengambil data index content pada canopusAPI
   const resContent = await fetch(
     `http://canopusapi.test/api/content?category=planet`

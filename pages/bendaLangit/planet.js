@@ -5,6 +5,7 @@ import CardKontenPlanets from "../../components/cards/cardContentPlanets";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 
 export default function Planet({ dataContentPlanets }) {
   useEffect(() => {
@@ -87,16 +88,26 @@ export default function Planet({ dataContentPlanets }) {
     </Layout>
   );
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
   // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data planet pada canopusAPI
   const resContentPlanet = await fetch(
     `http://canopusapi.test/api/content?category=planet`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tokenAccess}`,
       },
     }
   );

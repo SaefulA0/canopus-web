@@ -6,6 +6,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ModalEditFailed from "../../components/modals/modalFailedEdit";
 import ModalEditSuccess from "../../components/modals/modalEditSucces";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function pengaturanProfile({ dataUser, token }) {
   const { data: session, status } = useSession();
@@ -21,9 +23,13 @@ export default function pengaturanProfile({ dataUser, token }) {
     username: `${dataUser.username}`,
     email: `${dataUser.email}`,
     bio: `${dataUser.bio}`,
-    old_password: "",
+    current_password: "",
     password: "",
     confirm_password: "",
+  });
+
+  useEffect(() => {
+    AOS.init();
   });
 
   useEffect(() => {
@@ -77,7 +83,7 @@ export default function pengaturanProfile({ dataUser, token }) {
       },
       data: {
         // username: userInfo.username,
-        old_password: userInfo.old_password,
+        current_password: userInfo.current_password,
         password: userInfo.password,
         confirm_password: userInfo.confirm_password,
       },
@@ -100,17 +106,19 @@ export default function pengaturanProfile({ dataUser, token }) {
           <div className="flex flex-row">
             {/* side bar */}
             <div className="basis-1/5">
-              <h1 className="font-bold text-xl ml-1 text-gray-100 title-font underline">
+              <h1 className="hidden font-bold text-xl ml-1 text-gray-100 title-font underline">
                 Pengaturan
               </h1>
               <div className="items-center">
-                <button className="py-1 px-1 font-bold rounded-lg w-28 text-center mt-2 block text-secondColorHover hover:bg-opacity-90 hover:bg-secondColorHover hover:text-white hover:shadow-lg">
+                <button className="hidden py-1 px-1 font-bold rounded-lg w-28 text-center mt-2 text-secondColorHover hover:bg-opacity-90 hover:bg-secondColorHover hover:text-white hover:shadow-lg">
                   Hapus Akun
                 </button>
               </div>
               <Image
                 src="/imgs/astronout/astro1.png"
                 alt="profile 1"
+                data-aos="fade-right"
+                data-aos-duration="500"
                 width={300}
                 height={300}
                 priority
@@ -121,8 +129,19 @@ export default function pengaturanProfile({ dataUser, token }) {
             <div className="basis-3/4">
               {/* konten pengaturan */}
               {/* bagian foto cover */}
-              <div>
-                <div className="relative bg-profileBG w-full h-48 bg-cover">
+              <div className="mt-2">
+                <p
+                  data-aos="fade-up"
+                  data-aos-duration="500"
+                  className="text-left mb-7 text-xl font-bold border-b-2 border-opacity-20 text-white"
+                >
+                  Pengaturan akun
+                </p>
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="600"
+                  className="relative bg-profileBG w-full h-48 bg-cover"
+                >
                   <div className="flex items-center">
                     <Image
                       src="/imgs/defaultAvatar.png"
@@ -155,7 +174,11 @@ export default function pengaturanProfile({ dataUser, token }) {
                 </div>
                 {/* isian informasi akun */}
                 <form onSubmit={handleUpdate}>
-                  <div className="mt-7 flex flex-row justify-center border-t pt-5">
+                  <div
+                    data-aos="fade-up"
+                    data-aos-duration="700"
+                    className="mt-7 flex flex-row justify-center border-t pt-5"
+                  >
                     {/* bagian user & email */}
                     <div className="basis-2/3 mr-2">
                       {/* field Username */}
@@ -228,7 +251,11 @@ export default function pengaturanProfile({ dataUser, token }) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-end gap-5 mt-8">
+                  <div
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    className="flex justify-end gap-5 mt-8"
+                  >
                     <button className="px-6 py-2 rounded-lg text-center text-secondColor bg-white hover:bg-gray-300">
                       Batal
                     </button>
@@ -244,26 +271,34 @@ export default function pengaturanProfile({ dataUser, token }) {
 
                 {/* Perbarui password */}
                 <div className="relative">
-                  <p className="text-left text-xl font-bold border-b-2 border-opacity-20 pt-52 text-white">
+                  <p
+                    data-aos="fade-up"
+                    data-aos-duration="500"
+                    className="text-left text-xl font-bold border-b-2 border-opacity-20 pt-52 text-white"
+                  >
                     Perbarui Password
                   </p>
                   <form onSubmit={handleUpdatePass}>
                     <div className="mt-7">
                       {/* field old password */}
-                      <div className="my-2">
+                      <div
+                        data-aos="fade-up"
+                        data-aos-duration="600"
+                        className="my-2"
+                      >
                         <label className="block">
                           <span className="block text-base mb-1 text-white">
                             Masukan Password Lama
                           </span>
                           <input
                             type="password"
-                            name="password"
+                            name="current_password"
                             minLength={8}
                             required
                             onChange={({ target }) =>
                               setUserInfo({
                                 ...userInfo,
-                                old_password: target.value,
+                                current_password: target.value,
                               })
                             }
                             className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
@@ -271,7 +306,11 @@ export default function pengaturanProfile({ dataUser, token }) {
                         </label>
                       </div>
                       {/* field new password */}
-                      <div className="my-2">
+                      <div
+                        data-aos="fade-up"
+                        data-aos-duration="700"
+                        className="my-2"
+                      >
                         <label className="block">
                           <span className="block text-base mb-1 text-white">
                             Masukan Password Baru
@@ -292,14 +331,18 @@ export default function pengaturanProfile({ dataUser, token }) {
                         </label>
                       </div>
                       {/* field confirm password */}
-                      <div className="my-2">
+                      <div
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        className="my-2"
+                      >
                         <label className="block">
                           <span className="block text-base mb-1 text-white">
                             Konfirmasi Password baru
                           </span>
                           <input
                             type="password"
-                            name="password"
+                            name="confirm_password"
                             required
                             onChange={({ target }) =>
                               setUserInfo({
@@ -312,7 +355,11 @@ export default function pengaturanProfile({ dataUser, token }) {
                         </label>
                       </div>
                     </div>
-                    <div className="flex justify-end mt-7 gap-6">
+                    <div
+                      data-aos="fade-up"
+                      data-aos-duration="900"
+                      className="flex justify-end mt-7 gap-6"
+                    >
                       <button className="px-6 py-2 rounded-lg text-center text-secondColor bg-white hover:bg-gray-300">
                         Batal
                       </button>
@@ -340,6 +387,8 @@ export default function pengaturanProfile({ dataUser, token }) {
               <Image
                 src="/imgs/astronout/astro7.png"
                 alt="astro 7"
+                data-aos="fade-left"
+                data-aos-duration="500"
                 width={300}
                 height={300}
                 priority
@@ -357,6 +406,14 @@ export default function pengaturanProfile({ dataUser, token }) {
 export async function getServerSideProps(req, res) {
   // mengambil token session
   const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
   const tokenAccess = session.user.token;
   const username = session.user.user.username;
 

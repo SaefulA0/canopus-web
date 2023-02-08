@@ -1,10 +1,10 @@
 import Layout from "../../components/layout";
-import Link from "next/link";
 import Image from "next/image";
 import CardKontenOthers from "../../components/cards/cardContentOthers";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 
 export default function Lainnya({ dataContentOthers }) {
   useEffect(() => {
@@ -87,16 +87,26 @@ export default function Lainnya({ dataContentOthers }) {
     </Layout>
   );
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
   // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data lainnya pada canopusAPI
   const resContentOthers = await fetch(
     `http://canopusapi.test/api/content?category=lainnya di angkasa`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tokenAccess}`,
       },
     }
   );

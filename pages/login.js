@@ -1,4 +1,3 @@
-import Layout from "../components/layout.js";
 import { useState, useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import Router, { useRouter } from "next/router";
@@ -9,7 +8,6 @@ export default function Login() {
   const [userInfo, setUserInfo] = useState({ username: "", password: "" });
   const { status } = useSession();
   const router = useRouter();
-  const [modalFailedLogin, setModalFailedLogin] = useState(false);
   const [FailedLogin, setFailedLogin] = useState(false);
 
   useEffect(() => {
@@ -25,7 +23,6 @@ export default function Login() {
       redirect: false,
     }).then(({ error }) => {
       if (error) {
-        setModalFailedLogin(true);
         setFailedLogin(true);
       } else {
         router.push("/beranda");
@@ -39,7 +36,18 @@ export default function Login() {
         <title>Login</title>
         <link rel="icon" type="image/x-icon" href="/imgs/Favicon.png" />
       </Head>
-      <div className="w-full h-auto bg-loginBG bg-no-repeat bg-cover">
+      <div className="relative w-full h-auto bg-loginBG bg-no-repeat bg-cover">
+        {FailedLogin ? (
+          <div
+            class="w-full text-center absolute p-4 text-sm text-red-700 bg-red-100 dark:bg-red-200 dark:text-red-800"
+            role="alert"
+          >
+            Opps sepertinya <span class="font-medium">Username</span> dan{" "}
+            <span class="font-medium">Password</span> yang kamu masukan tidak
+            sesuai. Periksa kembali <span class="font-medium">Username</span>{" "}
+            dan <span class="font-medium">Password</span> kamu.
+          </div>
+        ) : null}
         <div className="h-screen">
           <img
             className="mx-auto py-8 pt-28"

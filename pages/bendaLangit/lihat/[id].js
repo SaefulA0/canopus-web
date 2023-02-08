@@ -396,12 +396,11 @@ export default function lihatBenda({
                   data-aos-duration="500"
                   className="flex justify-center mt-24"
                 >
-                  <Image
+                  <img
                     alt="hero"
                     width={276}
                     height={276}
-                    priority
-                    src="/imgs/astronout/astro4.png"
+                    src="/imgs/earth2.gif"
                   />
                 </div>
               </div>
@@ -443,7 +442,7 @@ export default function lihatBenda({
                     data-aos-anchor-placement="center-bottom"
                     slidesPerView={planet}
                     pagination={{ type: "progressbar" }}
-                    navigation={false}
+                    navigation={true}
                     modules={[Pagination, Navigation]}
                     className="mySwiper"
                   >
@@ -540,6 +539,14 @@ export default function lihatBenda({
 export async function getServerSideProps(context) {
   // mengambil token session
   const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
   const token = session.user.token;
   const username = session.user.user.username;
 
