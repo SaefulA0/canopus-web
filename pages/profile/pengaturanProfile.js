@@ -12,13 +12,13 @@ import "aos/dist/aos.css";
 export default function pengaturanProfile({ dataUser, token }) {
   const { data: session, status } = useSession();
   const tokenAccess = token;
-  const router = useRouter([]);
+  // const router = useRouter([]);
   const user = `${dataUser.username}`;
   const [modalEditSucces, setModalEditSucces] = useState(false);
   const [modalEditFailed, setModalEditFailed] = useState(false);
-  const [image, setImage] = useState(null);
-  const [createObjectURL, setCreateObjectURL] = useState(null);
-  const [name, setName] = useState(`${dataUser.avatar}`);
+  // const [image, setImage] = useState(null);
+  // const [createObjectURL, setCreateObjectURL] = useState(null);
+  // const [name, setName] = useState(`${dataUser.avatar}`);
   const [userInfo, setUserInfo] = useState({
     username: `${dataUser.username}`,
     email: `${dataUser.email}`,
@@ -37,14 +37,14 @@ export default function pengaturanProfile({ dataUser, token }) {
   }, [status]);
 
   // show avatar in client
-  const uploadToClient = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const i = event.target.files[0];
-      setName(event.target.files[0].name);
-      setImage(i);
-      setCreateObjectURL(URL.createObjectURL(i));
-    }
-  };
+  // const uploadToClient = (event) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     const i = event.target.files[0];
+  //     setName(event.target.files[0].name);
+  //     setImage(i);
+  //     setCreateObjectURL(URL.createObjectURL(i));
+  //   }
+  // };
 
   // update data profil
   const handleUpdate = async (e) => {
@@ -64,7 +64,9 @@ export default function pengaturanProfile({ dataUser, token }) {
     }).then(({ error }) => {
       if (error) {
         setModalEditFailed(true);
+        console.log("error");
       } else {
+        console.log("Berhasil");
         setModalEditSucces(true);
       }
     });
