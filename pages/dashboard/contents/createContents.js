@@ -17,10 +17,8 @@ export default function createContents ({ token }) {
     const [coordinate, setCoordinate] = useState('');
     const [distance, setDistance] = useState('');
     const [event, setEvent] = useState('');
-    const [excerpt, setExcerpt] = useState('');
     const [mainImg, setMainimg] = useState('');
     const [img, setImg] = useState('');
-    const [slug, setSlug] = useState('');
     const [trivia, setTrivia] = useState('');
     const [videoid, setVideoid] = useState('');
     
@@ -58,10 +56,8 @@ export default function createContents ({ token }) {
       coordinate: coordinate,
       distance: distance,
       event: event,
-      excerpt: excerpt,
       mainImg: mainImg,
       img: img,
-      slug: slug,
       trivia: trivia,
       videoid: videoid,
     }
@@ -195,20 +191,6 @@ export default function createContents ({ token }) {
                       </label>
                     </div>
                     <div className="my-2">
-                      <label className="block">
-                        <span className="block text-sm font-semibold text-[#667080]">
-                          Excerpt
-                        </span>
-                        <input
-                          type="text"
-                          name="excerpt"
-                          value={excerpt}
-                          onChange={(e) => setExcerpt(e.target.value)}
-                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                        />
-                      </label>
-                    </div>
-                    <div className="my-2">
                       <label className="block" for="file_input">
                         <span className="block text-sm font-semibold text-[#667080]">
                           Main Picture
@@ -234,20 +216,6 @@ export default function createContents ({ token }) {
                           onChange={handleFileChange}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                           multiple
-                        />
-                      </label>
-                    </div>
-                    <div className="my-2">
-                      <label className="block">
-                        <span className="block text-sm font-semibold text-[#667080]">
-                          Slug
-                        </span>
-                        <input
-                          type="text"
-                          name="slug"
-                          value={slug}
-                          onChange={(e) => setSlug(e.target.value)}
-                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
                     </div>
