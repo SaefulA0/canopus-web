@@ -1,17 +1,19 @@
-import Layout from "../../components/layout";
+import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+import Layout from "../../components/layout";
 import CarouselCard from "../../components/carousels/carouselCard";
 import SwiperCore, { Autoplay } from "swiper";
 import CardKontenPlanets from "../../components/cards/cardContentPlanets";
 import CardContentStars from "../../components/cards/cardContentStars";
 import CardKontenConstellations from "../../components/cards/cardContentConstellation";
 import CardKontenOthers from "../../components/cards/cardContentOthers";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function BendaLangit({
   dataContentIndex,
@@ -217,9 +219,18 @@ export default function BendaLangit({
     </Layout>
   );
 }
-export async function getServerSideProps() {
-  // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data index content pada canopusAPI
   const resContent = await fetch(
