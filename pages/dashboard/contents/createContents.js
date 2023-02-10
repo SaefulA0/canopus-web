@@ -1,8 +1,9 @@
 import Layout from "../layouts/layout";
 import Router, { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { getSession, useSession } from "next-auth/react";
+
 
 
 export default function createContents ({ token }) {
@@ -16,12 +17,16 @@ export default function createContents ({ token }) {
     const [coordinate, setCoordinate] = useState('');
     const [distance, setDistance] = useState('');
     const [event, setEvent] = useState('');
+    const [excerpt, setExcerpt] = useState('');
     const [mainImg, setMainimg] = useState('');
     const [img, setImg] = useState('');
+    const [slug, setSlug] = useState('');
     const [trivia, setTrivia] = useState('');
     const [videoid, setVideoid] = useState('');
     
-    const [validation, setValidation] = useState({});
+    useEffect(() => {
+      if (status === "unauthenticated") signOut(), Router.replace("/dashboard/login");
+    }, [status]);
 
     const handleFileChange = (e) => {
 
@@ -53,8 +58,10 @@ export default function createContents ({ token }) {
       coordinate: coordinate,
       distance: distance,
       event: event,
+      excerpt: excerpt,
       mainImg: mainImg,
       img: img,
+      slug: slug,
       trivia: trivia,
       videoid: videoid,
     }
@@ -67,9 +74,17 @@ export default function createContents ({ token }) {
       headers: {
         Authorization: `Bearer ${tokenAccess}`,
       },
-      data,
-    }).then('/dashboard/contents');    
+      data: data,
+    }).then(({ error }) => {
+      if (error) {
+        console.log("error");
+      } else {
+        console.log("Berhasil");
+        router.back();
+      }
+    });    
 };
+
     return(
         <Layout title="Create Contents">
         <main className="font-inter">
@@ -180,6 +195,20 @@ export default function createContents ({ token }) {
                       </label>
                     </div>
                     <div className="my-2">
+                      <label className="block">
+                        <span className="block text-sm font-semibold text-[#667080]">
+                          Excerpt
+                        </span>
+                        <input
+                          type="text"
+                          name="excerpt"
+                          value={excerpt}
+                          onChange={(e) => setExcerpt(e.target.value)}
+                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                        />
+                      </label>
+                    </div>
+                    <div className="my-2">
                       <label className="block" for="file_input">
                         <span className="block text-sm font-semibold text-[#667080]">
                           Main Picture
@@ -205,6 +234,20 @@ export default function createContents ({ token }) {
                           onChange={handleFileChange}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                           multiple
+                        />
+                      </label>
+                    </div>
+                    <div className="my-2">
+                      <label className="block">
+                        <span className="block text-sm font-semibold text-[#667080]">
+                          Slug
+                        </span>
+                        <input
+                          type="text"
+                          name="slug"
+                          value={slug}
+                          onChange={(e) => setSlug(e.target.value)}
+                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
                     </div>
@@ -262,8 +305,15 @@ export default function createContents ({ token }) {
 }
 export async function getServerSideProps(req, res){
   const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/dashboard/login",
+        permanent: false,
+      },
+    };
+  }
   const token = session.user.token;
-  
   return{
     props:{
       token: token,
