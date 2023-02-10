@@ -57,6 +57,7 @@ export default function editContents({
         console.log("error");
       } else {
         console.log("Berhasil");
+        router.back();
       }
     });
   };

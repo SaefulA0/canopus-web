@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Router from "next/router";
 
 
-export default function index ({ dataUser }) {
+export default function index ({ dataUser, token }) {
   const { data: session, status } = useSession();
   useEffect(() => {
     if (status === "unauthenticated") Router.replace("/dashboard/login");
@@ -17,7 +17,7 @@ export default function index ({ dataUser }) {
             <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           <div className="w-full min-h-screen">
             {/* tabel */}
-            <TableUsers dataUser={dataUser}/>
+            <TableUsers dataUser={dataUser} token={token}/>
           </div>
         </div>
         </Layout>
@@ -55,6 +55,7 @@ export async function getServerSideProps(req, res) {
   return {
     props: {
       dataUser: dataUser.data,
+      token: token,
     },
   };
 }

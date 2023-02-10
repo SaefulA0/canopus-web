@@ -11,6 +11,7 @@ export default function createUsers({ token }){
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirm_password, setConfirmPassword] = useState('');
     const [avatar, setAvatar] = useState('');
     const [banner, setBanner] = useState('');
     const [bio, setBio] = useState('');
@@ -19,25 +20,6 @@ export default function createUsers({ token }){
       if (status === "unauthenticated") signOut(), Router.replace("/dashboard/login");
     }, [status]);
 
-    const handleFileChange = (e) => {
-
-      const imageData = e.target.files[0]
-      const imageData1 = e.target.files[0]
-
-      if (!imageData.type.match('image.*')){
-          setAvatar('');
-
-          return
-      }
-      if (!imageData1.type.match('image.*')){
-          setBanner('');
-
-          return
-      }
-      setAvatar(imageData);
-      setBanner(imageData1);
-  }
-
     const createPost = async (e) => {
       e.preventDefault();
   
@@ -45,6 +27,7 @@ export default function createUsers({ token }){
         username: username,
         email: email,
         password: password,
+        confirm_password: confirm_password,
         avatar: avatar,
         banner: banner,
         bio: bio,
@@ -123,29 +106,43 @@ export default function createUsers({ token }){
                       </label>
                     </div>
                     <div className="my-2">
-                      <label className="block" for="file_input">
+                    <label className="block">
                         <span className="block text-sm font-semibold text-[#667080]">
-                          Avatar
+                          Confirm Password
                         </span>
                         <input
-                          type="file"
-                          id="file_input"
-                          name="avatar"
-                          onChange={handleFileChange}
+                          type="password"
+                          name="confirm_password"
+                          value={confirm_password}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
                     </div>
                     <div className="my-2">
-                      <label className="block" for="multiple_files">
+                      <label className="block">
+                        <span className="block text-sm font-semibold text-[#667080]">
+                          Avatar
+                        </span>
+                        <input
+                          type="text"
+                          id="avatar"
+                          name="avatar"
+                          onChange={(e) => setAvatar(e.target.value)}
+                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                        />
+                      </label>
+                    </div>
+                    <div className="my-2">
+                      <label className="block">
                         <span className="block text-sm font-semibold text-[#667080]">
                           Banner
                         </span>
                         <input
-                          type="file"
-                          id="multiple_files"
+                          type="text"
+                          id="banner"
                           name="banner"
-                          onChange={handleFileChange}
+                          onChange={(e) => setBanner(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
