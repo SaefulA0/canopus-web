@@ -1,8 +1,27 @@
 import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import axios from "axios";
 
-export default function TableUsers({ dataUser }) {
+
+export default function TableUsers({ dataUser, token }) {
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    const res = await axios({
+      method: "DELETE",
+      url: `http://canopusapi.test/api/user/${dataUser.id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(({ error }) => {
+      if (error) {
+        console.log("error");
+      } else {
+        console.log("Berhasil");
+      }
+    });
+  };
   return (
     <>
       <div className="relative w-full h-5">
@@ -67,7 +86,7 @@ export default function TableUsers({ dataUser }) {
                         Detail
                       </button>
                     </Link>
-                    <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#dc3545] hover:bg-red-500 text-white text-sm shadow-md">
+                    <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#dc3545] hover:bg-red-500 text-white text-sm shadow-md" onClick={handleDelete}>
                         Hapus
                       </button>
                   </td>

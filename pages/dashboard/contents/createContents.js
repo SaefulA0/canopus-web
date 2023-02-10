@@ -17,8 +17,8 @@ export default function createContents ({ token }) {
     const [coordinate, setCoordinate] = useState('');
     const [distance, setDistance] = useState('');
     const [event, setEvent] = useState('');
-    const [mainImg, setMainimg] = useState('');
-    const [img, setImg] = useState('');
+    const [mainpicture, setMainpicture] = useState('');
+    const [pictures, setPictures] = useState('');
     const [trivia, setTrivia] = useState('');
     const [videoid, setVideoid] = useState('');
     
@@ -26,24 +26,6 @@ export default function createContents ({ token }) {
       if (status === "unauthenticated") signOut(), Router.replace("/dashboard/login");
     }, [status]);
 
-    const handleFileChange = (e) => {
-
-      const imageData = e.target.files[0]
-      const imageData1 = e.target.files[0]
-
-      if (!imageData.type.match('image.*')){
-          setMainimg('');
-
-          return
-      }
-      if (!imageData1.type.match('image.*')){
-          setImg('');
-
-          return
-      }
-      setMainimg(imageData);
-      setImg(imageData1);
-  }
 
   const createPost = async (e) => {
     e.preventDefault();
@@ -56,8 +38,8 @@ export default function createContents ({ token }) {
       coordinate: coordinate,
       distance: distance,
       event: event,
-      mainImg: mainImg,
-      img: img,
+      mainpicture: mainpicture,
+      pictures: pictures,
       trivia: trivia,
       videoid: videoid,
     }
@@ -135,19 +117,24 @@ export default function createContents ({ token }) {
                       </label>
                     </div>
                     <div className="my-2">
-                      <label className="block">
-                        <span className="block text-sm font-semibold text-[#667080]">
-                          Category
-                        </span>
-                        <input
-                          type="text"
-                          name="category"
-                          value={category}
-                          onChange={(e) => setCategory(e.target.value)}
-                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                        />
-                      </label>
-                    </div>
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Category
+                      </span>
+                      <select
+                        id="category"
+                        name="category"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                      >
+                        <option value="-Pilih-">-Pilih-</option>
+                        <option value="Rasi">Rasi</option>
+                        <option value="Planet">Planet</option>
+                        <option value="Bintang">Bintang</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
+                    </label>
+                  </div>
                     <div className="my-2">
                       <label className="block">
                         <span className="block text-sm font-semibold text-[#667080]">
@@ -177,45 +164,59 @@ export default function createContents ({ token }) {
                       </label>
                     </div>
                     <div className="my-2">
-                      <label className="block">
-                        <span className="block text-sm font-semibold text-[#667080]">
-                          Event
-                        </span>
-                        <input
-                          type="text"
-                          name="event"
-                          value={event}
-                          onChange={(e) => setEvent(e.target.value)}
-                          className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                        />
-                      </label>
-                    </div>
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Event
+                      </span>
+                      <select
+                        id="event"
+                        name="event"
+                        value={event}
+                        onChange={(e) => setEvent(e.target.value)}
+                      >
+                        <option value="-Pilih-">-Pilih-</option>
+                        <option value="Merkurius">Merkurius</option>
+                        <option value="Venus">Venus</option>
+                        <option value="Bumi">Bumi</option>
+                        <option value="Mars">Mars</option>
+                        <option value="Jupiter">Jupiter</option>
+                        <option value="Saturnus">Saturnus</option>
+                        <option value="Neptunus">Neptunus</option>
+                        <option value="Ceres">Ceres</option>
+                        <option value="Eris">Eris</option>
+                        <option value="Pluto">Pluto</option>
+                        <option value="Makemake">Makemake</option>
+                        <option value="Haumea">Haumea</option>
+                      </select>
+                    </label>
+                  </div>
                     <div className="my-2">
-                      <label className="block" for="file_input">
+                      <label className="block">
                         <span className="block text-sm font-semibold text-[#667080]">
                           Main Picture
                         </span>
                         <input
-                          type="file"
-                          id="file_input"
+                          type="text"
+                          id="main_picture"
                           name="mainPicture"
-                          onChange={handleFileChange}
+                          value={mainpicture}
+                          onChange={(e) => setMainpicture(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         />
                       </label>
                     </div>
                     <div className="my-2">
-                      <label className="block" for="multiple_files">
+                      <label className="block">
                         <span className="block text-sm font-semibold text-[#667080]">
                           Pictures
                         </span>
                         <input
-                          type="file"
-                          id="multiple_files"
+                          type="text"
+                          id="pictures"
                           name="pictures"
-                          onChange={handleFileChange}
+                          value={pictures}
+                          onChange={(e) => setPictures(e.target.value)}
                           className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                          multiple
                         />
                       </label>
                     </div>
