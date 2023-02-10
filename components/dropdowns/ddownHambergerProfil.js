@@ -83,7 +83,7 @@ export default function BtnHambergerProfil() {
             <Menu.Item>
               <div className="group hover:bg-secondColorHover font-semibold transition ease-in-out hover:-translate-y-1 duration-300">
                 <a
-                  href="profile/pengaturanProfile"
+                  href="/profile/pengaturanProfile"
                   className="flex text-gray-200 w-full items-center cursor-pointer text-sm px-2 py-2 hover:bg-opacity-20"
                 >
                   <svg
