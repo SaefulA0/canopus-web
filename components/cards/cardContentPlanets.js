@@ -38,7 +38,7 @@ export default function CardKontenPlanets({ dataContentPlanets }) {
               {dataContentPlanets.title}
             </p>
           </div>
-          {status === "authenticated" && (
+          {/* {status === "authenticated" && (
             <div className="absolute bottom-6 right-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function CardKontenPlanets({ dataContentPlanets }) {
                 />
               </svg>
             </div>
-          )}
+          )} */}
         </Link>
       </div>
     </>

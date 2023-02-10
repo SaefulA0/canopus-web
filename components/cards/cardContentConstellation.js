@@ -37,7 +37,7 @@ export default function CardKontenConstellations({
               {dataContentConstellations.title}
             </p>
           </div>
-          {status === "authenticated" && (
+          {/* {status === "authenticated" && (
             <div className="absolute bottom-6 right-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +54,8 @@ export default function CardKontenConstellations({
                 />
               </svg>
             </div>
-          )}
-          {status === "unauthenticated" && (
+          )} */}
+          {/* {status === "unauthenticated" && (
             <div className="absolute hidden bottom-6 right-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ export default function CardKontenConstellations({
                 />
               </svg>
             </div>
-          )}
+          )} */}
         </Link>
       </div>
     </>

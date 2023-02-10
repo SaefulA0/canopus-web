@@ -129,15 +129,21 @@ export default function beranda({ dataContent }) {
 
 export async function getServerSideProps(req, res) {
   const session = await getSession(req, res);
-  // const tokenAccess = session.user.token;
-
-  // mengambil token session
-  const token = "34|OB47lJxFEGTMj0Xkt3QJd0zqii1tMkCXO7FyEFFb";
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data canopusAPI
   const resContent = await fetch(`http://canopusapi.test/api/content`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${tokenAccess}`,
     },
   });
   const content = await resContent.json();
@@ -147,7 +153,6 @@ export async function getServerSideProps(req, res) {
   return {
     props: {
       dataContent: limitContent,
-      // ytIdVideo: ytIdVideo,
     },
   };
 }

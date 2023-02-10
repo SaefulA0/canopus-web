@@ -2,8 +2,16 @@ import Layout from "../../components/layout";
 import Link from "next/link";
 import Image from "next/image";
 import CardContentStars from "../../components/cards/cardContentStars";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 
 export default function Bintang({ dataContentStars }) {
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
     <Layout title="Daftar Bintang">
       <main>
@@ -12,11 +20,15 @@ export default function Bintang({ dataContentStars }) {
             <div className="flex flex-row">
               <div className="basis-1/3"></div>
               <div className="basis-full w-full">
-                <h1 className="text-4xl pt-14 pb-10 text-center font-bold text-white ">
+                <h1
+                  data-aos="fade-right"
+                  data-aos-duration="600"
+                  className="text-4xl pt-14 pb-10 text-center font-bold text-white "
+                >
                   Selamat datang di samudra angkasa, Astroners!
                 </h1>
                 {/* Search */}
-                <form action="">
+                <form data-aos="fade-right" data-aos-duration="600" action="">
                   <div class="relative">
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                       <svg
@@ -41,6 +53,8 @@ export default function Bintang({ dataContentStars }) {
               <Image
                 src="/imgs/astronout/astro7.png"
                 alt="astro 7"
+                data-aos="fade-up"
+                data-aos-duration="800"
                 width={300}
                 height={300}
                 priority
@@ -49,18 +63,24 @@ export default function Bintang({ dataContentStars }) {
             </div>
           </div>
           {/* Section list */}
-          <div class="text-center pt-32">
-            <h1 class="text-3xl pb-10 font-bold text-white underline">
+          <div class="text-center pt-20">
+            <h1
+              data-aos="fade-right"
+              data-aos-duration="600"
+              class="text-3xl font-bold text-white underline"
+            >
               Bintang
             </h1>
           </div>
           {/* Card */}
           <div className="flex flex-wrap justify-center gap-10 pt-10 pb-20">
             {dataContentStars.map((dataContentStars) => (
-              <CardContentStars
-                key={dataContentStars.id}
-                dataContentStars={dataContentStars}
-              />
+              <div data-aos="fade-up" data-aos-duration="800">
+                <CardContentStars
+                  key={dataContentStars.id}
+                  dataContentStars={dataContentStars}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -69,16 +89,26 @@ export default function Bintang({ dataContentStars }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
   // mengambil token session
-  const token = "EuHMmH4N9j6OWrhy7BTP5p7xiDhXuJpGI01eA97v";
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const tokenAccess = session.user.token;
+  const username = session.user.user.username;
 
   // mengambil data bintang pada canopusAPI
   const resContentStar = await fetch(
     `http://canopusapi.test/api/content?category=bintang`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tokenAccess}`,
       },
     }
   );
