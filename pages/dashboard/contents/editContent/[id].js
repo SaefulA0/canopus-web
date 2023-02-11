@@ -62,7 +62,7 @@ export default function editContents({
         console.log("error");
       } else {
         console.log("Berhasil");
-        setModalEditSucces(true);
+        router.back();
       }
     });
   };
