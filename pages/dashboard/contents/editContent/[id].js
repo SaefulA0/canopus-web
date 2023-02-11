@@ -3,6 +3,8 @@ import Router, { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ModalEditFailed from "../../../../components/modals/modalFailedEdit";
+import ModalEditSuccess from "../../../../components/modals/modalEditSucces";
 
 export default function editContents({
   usernameID,
@@ -11,6 +13,8 @@ export default function editContents({
   dataContentEdit,
 }) {
   const router = useRouter();
+  const [modalEditSucces, setModalEditSucces] = useState(false);
+  const [modalEditFailed, setModalEditFailed] = useState(false);
 
   const [kontenInfo, setKontenInfo] = useState({
     title: `${dataContentEdit.title}`,
@@ -54,6 +58,7 @@ export default function editContents({
       },
     }).then(({ error }) => {
       if (error) {
+        setModalEditFailed(true);
         console.log("error");
       } else {
         console.log("Berhasil");
@@ -84,6 +89,8 @@ export default function editContents({
   return (
     <Layout title="Edit Contents">
       <main className="font-inter">
+        {modalEditSucces ? <ModalEditSuccess /> : null}
+        {modalEditFailed ? <ModalEditFailed /> : null}
         <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           {/* main */}
           <div className="flex flex-wrap md:flex-nowrap">
