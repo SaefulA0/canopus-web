@@ -127,7 +127,7 @@ export default function createContents ({ token }) {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                       >
-                        <option value="-Pilih-">-Pilih-</option>
+                        <option value="-">-Pilih-</option>
                         <option value="Rasi Bintang">Rasi</option>
                         <option value="Planet">Planet</option>
                         <option value="Bintang">Bintang</option>
@@ -174,7 +174,7 @@ export default function createContents ({ token }) {
                         value={event}
                         onChange={(e) => setEvent(e.target.value)}
                       >
-                        <option value="-Pilih-">-Pilih-</option>
+                        <option value={null}>-Pilih-</option>
                         <option value="Merkurius">Merkurius</option>
                         <option value="Venus">Venus</option>
                         <option value="Bumi">Bumi</option>
@@ -187,6 +187,7 @@ export default function createContents ({ token }) {
                         <option value="Pluto">Pluto</option>
                         <option value="Makemake">Makemake</option>
                         <option value="Haumea">Haumea</option>
+                        <option value="Matahari">Matahari</option>
                       </select>
                     </label>
                   </div>
