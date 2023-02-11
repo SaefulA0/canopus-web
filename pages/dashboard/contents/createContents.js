@@ -124,10 +124,11 @@ export default function createContents({ token }) {
                         // value={category}
                         onChange={(e) => setCategory(e.target.value)}
                       >
-                        <option value="Rasi">Rasi</option>
+                        <option value="-Pilih-">-Pilih-</option>
+                        <option value="Rasi Bintang">Rasi</option>
                         <option value="Planet">Planet</option>
                         <option value="Bintang">Bintang</option>
-                        <option value="Lainnya">Lainnya</option>
+                        <option value="Lainnya di Angkasa">Lainnya</option>
                       </select>
                     </label>
                   </div>
