@@ -1,8 +1,27 @@
 import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import axios from "axios";
 
-export default function TableUsers({ dataUser }) {
+
+export default function TableUsers({ dataUser, token }) {
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    const res = await axios({
+      method: "DELETE",
+      url: `http://canopusapi.test/api/user/${dataUser.id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(({ error }) => {
+      if (error) {
+        console.log("error");
+      } else {
+        console.log("Berhasil");
+      }
+    });
+  };
   return (
     <>
       <div className="relative w-full h-5">
@@ -11,8 +30,7 @@ export default function TableUsers({ dataUser }) {
             Tambah Data +
           </button>
         </Link>
-        <div className="flex absolute right-0">
-        </div>
+        <div className="flex absolute right-0"></div>
       </div>
       {/* Table */}
       <div className="mt-10 container">
@@ -36,48 +54,43 @@ export default function TableUsers({ dataUser }) {
             </tr>
           </thead>
           <tbody>
-              {dataUser.map((user) => {
-                return (
-                  <tr key={user.id}className="bg-white border-b">
+            {dataUser.map((user) => {
+              return (
+                <tr key={user.id} className="bg-white border-b">
                   <th
                     scope="row"
                     className="py-4 text-center font-medium text-black whitespace-nowrap"
                   >
                     {user.id}
                   </th>
-                  <td className="py-4 px-6">
-                    {user.username}
-                  </td>
-                  <td className="py-4 px-6">
-                    {user.email}
-                  </td>
+                  <td className="py-4 px-6">{user.username}</td>
+                  <td className="py-4 px-6">{user.email}</td>
                   <td className="py-4 px-3 text-center">
-                      <p className="text-black mx-auto px-4 py-1 rounded-full w-fit">
+                    <p className="text-black mx-auto px-4 py-1 rounded-full w-fit">
                       {user.bio}
-                      </p>
+                    </p>
                   </td>
                   <td className="py-4 px-6 text-center">
-                    <Link href="/dashboard/users/editUsers">
-                    <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#24a0ed] hover:bg-blue-500 text-white text-sm shadow-md">
+                    <Link href={`/dashboard/users/editUsers/${user.username}`}>
+                      <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#24a0ed] hover:bg-blue-500 text-white text-sm shadow-md">
                         Edit
                       </button>
                     </Link>
                     <Link href="/dashboard/users/showUsers">
-                    <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#17a2b8] hover:bg-cyan-500 text-white text-sm shadow-md">
+                      <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#17a2b8] hover:bg-cyan-500 text-white text-sm shadow-md">
                         Detail
                       </button>
                     </Link>
-                    <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#dc3545] hover:bg-red-500 text-white text-sm shadow-md">
+                    <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#dc3545] hover:bg-red-500 text-white text-sm shadow-md" onClick={handleDelete}>
                         Hapus
                       </button>
                   </td>
                 </tr>
-                );
-              })}
+              );
+            })}
           </tbody>
         </table>
       </div>
     </>
   );
 }
-
