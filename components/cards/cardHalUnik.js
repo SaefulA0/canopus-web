@@ -14,7 +14,7 @@ export default function CardHalUnik({ dataUniqContent }) {
               alt="bg"
               width={512}
               height={512}
-              className="w-80 aspect-square object-cover rounded-lg"
+              className="w-64 aspect-square object-cover rounded-lg"
             />
           ) : (
             <img
@@ -22,7 +22,7 @@ export default function CardHalUnik({ dataUniqContent }) {
               alt="bg"
               width={512}
               height={512}
-              className="w-80 aspect-square object-cover rounded-lg"
+              className="w-64 aspect-square object-cover rounded-lg"
             />
           )}
           <p className="absolute bottom-5 left-5 font-medium">

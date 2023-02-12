@@ -53,6 +53,12 @@ export default function detailContents({
                     {dataContentDetail.category}
                   </p>
                 </div>
+                <div className="mr-32">
+                  <p className="text-base font-bold ml-5">Event :</p>
+                  <p className="ml-7 font-medium text-lg">
+                    {dataContentDetail.event}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="flex justify-between">
