@@ -92,6 +92,14 @@ export default function Favorite({ dataContent }) {
 export async function getServerSideProps(req, res) {
   // mengambil token session
   const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
   const tokenAccess = session.user.token;
   const username = session.user.user.username;
 

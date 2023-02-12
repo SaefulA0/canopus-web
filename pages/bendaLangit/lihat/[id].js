@@ -414,29 +414,31 @@ export default function lihatBenda({
                 </div>
               </div>
             </div>
-            <div>
-              <h2 className="text-center text-2xl font-semibold underline mb-8">
-                Hal Unik Yang Pernah Terjadi Di {dataContentShow.event}
-              </h2>
-              <div className="flex">
-                <Swiper
-                  data-aos="fade-top"
-                  data-aos-duration="500"
-                  data-aos-anchor-placement="center-bottom"
-                  slidesPerView={halUnik}
-                  pagination={{ type: "progressbar" }}
-                  navigation={true}
-                  modules={[Pagination, Navigation]}
-                  className="mySwiper"
-                >
-                  {dataUniqContent.map((dataUniqContent) => (
-                    <SwiperSlide key={dataUniqContent.id}>
-                      <CardHalUnik dataUniqContent={dataUniqContent} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+            {dataContentShow.event ? (
+              <div>
+                <h2 className="text-center text-2xl font-semibold underline mb-8">
+                  Hal Unik Yang Pernah Terjadi Di {dataContentShow.event}
+                </h2>
+                <div className="flex">
+                  <Swiper
+                    data-aos="fade-top"
+                    data-aos-duration="500"
+                    data-aos-anchor-placement="center-bottom"
+                    slidesPerView={halUnik}
+                    pagination={{ type: "progressbar" }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                  >
+                    {dataUniqContent.map((dataUniqContent) => (
+                      <SwiperSlide key={dataUniqContent.id}>
+                        <CardHalUnik dataUniqContent={dataUniqContent} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
           <div className="flex flex-col items-center mt-16 px-10 py-10 rounded-xl shadow-lg bg-mainColor text-textMainColor">
             <h2 className="text-2xl text-center font-semibold underline mb-6">
