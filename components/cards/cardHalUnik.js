@@ -10,7 +10,7 @@ export default function CardHalUnik({ dataUniqContent }) {
         <Link href={`/bendaLangit/lihat/${dataUniqContent.id}`}>
           {dataUniqContent.mainpicture ? (
             <img
-              src={`/imgs/planet/${dataUniqContent.mainpicture}`}
+              src={`/imgs/contents/${dataUniqContent.mainpicture}`}
               alt="bg"
               width={512}
               height={512}
