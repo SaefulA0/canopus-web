@@ -65,9 +65,8 @@ export default function beranda({ dataContent }) {
             >
               <div className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3">
                 <h1 className="pt-5 text-white text-xl font-bold">Canopus?</h1>
-                <p className="p-3 text-white text-opacity-80">
-                  Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <p className="p-3 h-32 text-white text-opacity-80">
+                Canopus merupakan website edukasi ilmu astronomi.
                 </p>
                 <Image
                   src="/imgs/astronout/astro4.png"
@@ -84,9 +83,8 @@ export default function beranda({ dataContent }) {
                 className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3"
               >
                 <h1 className="pt-5 text-white text-xl font-bold">Tujuan</h1>
-                <p className="p-3 text-white text-opacity-80">
-                  Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <p className="p-3 h-32 text-white text-opacity-80">
+                Tujuan utama canopus adalah untuk meningkatkan minat baca masyarakat Indonesia
                 </p>
                 <Image
                   src="/imgs/astronout/astro5.png"
@@ -104,10 +102,9 @@ export default function beranda({ dataContent }) {
                   className="bg-black rounded-xl bg-opacity-50 w-80 text-center px-5 py-3"
                 >
                   <h1 className="pt-5 text-white text-xl font-bold">Misi</h1>
-                  <p className="p-3 text-white text-opacity-80">
-                    Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
+                  <p className="p-3 h-32 text-white text-opacity-80">
+                  Misi Canopus selain meningkatkan minat baca adalah untuk 
+                  meningkatkan ketertarikan terhadap ilmu astronomi.
                   </p>
                   <Image
                     src="/imgs/astronout/astro6.png"

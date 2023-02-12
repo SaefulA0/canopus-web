@@ -13,7 +13,7 @@ export default function CardContentFav({ dataContent }) {
         <Link href={`/bendaLangit/lihat/${dataContent.data.id}`}>
           {dataContent.data.mainpicture ? (
             <img
-              src={`/imgs/contents/${dataContent.mainpicture}`}
+              src={`/imgs/contents/${dataContent.data.mainpicture}`}
               alt="bg"
               className="w-96 aspect-video object-cover rounded-lg"
             />
