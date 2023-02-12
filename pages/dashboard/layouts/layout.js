@@ -2,7 +2,6 @@ import Head from "next/head";
 import SideNavbar from "../../../components/sidebar.js";
 import Router from "next/router";
 
-
 export default function Layout(props) {
   return (
     <>

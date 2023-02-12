@@ -16,7 +16,7 @@ function SideNavbar() {
             <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
           </svg>
         </Disclosure.Button>
-        <div className="p-6 w-3/5 h-screen shadow-lg border-2 md:shadow-none md:border-0 bg-[#282F6A] fixed md:static z-20 top-0 -left-96 lg:left-0 lg:w-60 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
+        <div className="p-6 w-3/5 min-h-screen shadow-lg border-2 md:shadow-none md:border-0 bg-[#282F6A] fixed md:static z-20 top-0 -left-96 lg:left-0 lg:w-60 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start item-center">
             <div className="mt-4">
               {/* Nav dashboard */}
@@ -93,37 +93,37 @@ function SideNavbar() {
                 </div>
               </Link>
             </div>
-              <Link href="/dashboard/users">
-                <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-orange-500 p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
+            <Link href="/dashboard/users">
+              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-orange-500 p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                 <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 stroke-white group-hover:stroke-white"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 13.5H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-                    />
-                  </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6 stroke-white group-hover:stroke-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 13.5H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+                  />
+                </svg>
 
-                  <span className="text-base text-white group-hover:text-white font-medium ">
-                    Users
-                  </span>
-                </div>
-              </Link>
-              <button onClick={() => signOut()}>
-                <div className="flex mb-2 justify-start items-center gap-4 pl-5 mt-96 hover:bg-orange-500 p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
-                  <span className="text-base text-white group-hover:text-white font-medium ">
-                    Sign Out
-                  </span>
-                </div>
-              </button>
-            </div>
+                <span className="text-base text-white group-hover:text-white font-medium ">
+                  Users
+                </span>
+              </div>
+            </Link>
+            <button onClick={() => signOut()}>
+              <div className="flex mb-2 justify-start items-center gap-4 pl-5 mt-96 hover:bg-orange-500 p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
+                <span className="text-base text-white group-hover:text-white font-medium ">
+                  Sign Out
+                </span>
+              </div>
+            </button>
           </div>
+        </div>
       </Disclosure>
     </>
   );
