@@ -32,6 +32,8 @@ export default function editContents({
     videoId: `${dataContentEdit.videoId}`,
   });
 
+  console.log(kontenInfo.event);
+
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -234,6 +236,8 @@ export default function editContents({
                           })
                         }
                       >
+                        <option>--Pilih--</option>
+                        <option value="">Null</option>
                         <option value="Merkurius">Merkurius</option>
                         <option value="Venus">Venus</option>
                         <option value="Bumi">Bumi</option>
