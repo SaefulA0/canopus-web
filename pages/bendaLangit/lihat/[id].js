@@ -396,7 +396,7 @@ export default function lihatBenda({
                 >
                   {dataContentShow.mainpicture ? (
                     <img
-                      src={`/imgs/gif/${dataContentShow.picture}`}
+                      src={`/imgs/gif/${dataContentShow.pictures}`}
                       alt="gif"
                       priority={true}
                       className="w-80 h-auto rounded-lg"
