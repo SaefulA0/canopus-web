@@ -400,8 +400,6 @@ export default function lihatBenda({
                     <img
                       src={`/imgs/gif/${dataContentShow.picture}`}
                       alt="gif"
-                      // width={276}
-                      // height={276}
                       priority={true}
                       className="w-80 h-auto rounded-lg"
                     />
