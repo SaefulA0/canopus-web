@@ -31,8 +31,6 @@ export default function lihatBenda({
   idFav,
   token,
 }) {
-  const { data: session, status } = useSession();
-
   // memberikan efek pada setiap element
   useEffect(() => {
     AOS.init();
