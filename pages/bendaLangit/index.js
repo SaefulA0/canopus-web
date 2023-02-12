@@ -21,6 +21,7 @@ export default function BendaLangit({
   dataContentStars,
   dataContentOthers,
   dataContentConstellations,
+  dataContentRandom,
 }) {
   useEffect(() => {
     AOS.init();
@@ -87,12 +88,41 @@ export default function BendaLangit({
               delay: 5000,
             }}
           >
-            {dataContentIndex.map((dataContentIndex) => (
-              <SwiperSlide key={dataContentIndex.id}>
-                <CarouselCard dataContentIndex={dataContentIndex} />
+            {dataContentOthers.map((dataContentOthers) => (
+              <SwiperSlide key={dataContentOthers.id}>
+                <CarouselCard dataContentIndex={dataContentOthers} />
               </SwiperSlide>
             ))}
           </Swiper>
+          {/* <div className="relative bg-mainColor shadow-lg text-textMainColor justify-between flex w-11/12 h-auto py-9 px-14 mx-auto border-2 border-gray-600 border-opacity-50 rounded-lg">
+            <div className="basis-3/4">
+              <p className="text-2xl mb-4 font-bold">
+                {dataContentRandom.title}
+              </p>
+              <p className="text-gray-100 text-lg indent-8 text-justify text-opacity-70 leading-relaxed line-clamp-4 mb-8">
+                {dataContentRandom.intro}
+              </p>
+              <Link
+                href={`/bendaLangit/lihat/${dataContentRandom.id}`}
+                className="absolute bottom-9 left-14 inline-flex shadow-xl text-white bg-secondColor py-2 px-8 focus:outline-none rounded-lg text-lg transition ease-in-out hover:-translate-y-1 hover:bg-secondColorHover duration-300"
+              >
+                Lihat
+              </Link>
+            </div>
+            {dataContentRandom.mainpicture ? (
+              <img
+                src={`/imgs/contents/${dataContentRandom.mainpicture}`}
+                alt="bg"
+                className="w-60 h-60 aspect-video object-cover rounded-lg"
+              />
+            ) : (
+              <img
+                src="/imgs/defaultContentSquare.png"
+                alt="bg"
+                className="w-60 h-60 aspect-video object-cover rounded-lg"
+              />
+            )}
+          </div> */}
           {/* Section list */}
           <div>
             <div className=" ml-4 pt-32 flex justify-between px-20">
@@ -233,13 +263,23 @@ export async function getServerSideProps(req, res) {
   const username = session.user.user.username;
 
   // mengambil data index content pada canopusAPI
-  const resContent = await fetch(
-    `http://canopusapi.test/api/content?category=planet`
-  );
-  const content = await resContent.json();
-  const dataContent = content.data;
-  const reverseContent = dataContent.reverse();
-  const limitContent = reverseContent.slice(0, 3);
+  // const resContent = await fetch(
+  //   `http://canopusapi.test/api/content?category=planet`
+  // );
+  // const content = await resContent.json();
+  // const dataContent = content.data;
+  // const reverseContent = dataContent.reverse();
+  // const limitContent = reverseContent.slice(0, 3);
+
+  // mengambil data random
+  const resContentRandom = await fetch(`http://canopusapi.test/api/content`);
+  const contentRandom = await resContentRandom.json();
+  const dataContentRandom = contentRandom.data;
+  const randomDataContent =
+    dataContentRandom[(dataContentRandom * Math.random()) << 0];
+
+  // const limitContentRandom = dataContentRandom.slice(0, 10);
+  // console.log("INI LOG", randomDataContent);
 
   // mengambil data planet pada canopusAPI
   const resContentPlanet = await fetch(
@@ -248,6 +288,7 @@ export async function getServerSideProps(req, res) {
   const contentPlanet = await resContentPlanet.json();
   const dataContentPlanet = contentPlanet.data;
   const limitContentPlanet = dataContentPlanet.slice(0, 3);
+  const reverseContent = dataContentPlanet.reverse();
 
   // mengambil data bintang pada canopusAPI
   const resContentStar = await fetch(
@@ -275,11 +316,12 @@ export async function getServerSideProps(req, res) {
 
   return {
     props: {
-      dataContentIndex: limitContent,
+      dataContentIndex: reverseContent,
       dataContentPlanets: limitContentPlanet,
       dataContentStars: limitContentStar,
       dataContentConstellations: limitContentConstellation,
       dataContentOthers: limitContentOthers,
+      dataContentRandom: randomDataContent,
     },
   };
 }
