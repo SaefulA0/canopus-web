@@ -151,12 +151,13 @@ export default function lihatBenda({
               }}
             >
               {dataContentShow.mainpicture ? (
-                <Image
+                <img
                   src={`/imgs/contents/${dataContentShow.mainpicture}`}
                   alt="bg"
                   layout="fill"
-                  objectFit="cover"
-                  priority={true}
+                  onError="this.onerror=null;this.src='https://placeimg.com/200/300/animals';"
+                  // objectFit="cover"
+                  // priority={true}
                   className="w-full h-full bg-center bg-cover bg-no-repeat"
                 />
               ) : (

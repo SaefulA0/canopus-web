@@ -137,9 +137,7 @@ export default function tentangCanopus() {
                   <h1 className=" text-white text-xl font-bold pl-8 pb-4">
                     Saeful Anwar
                   </h1>
-                  <h1 className="text-white text-sm pl-14">
-                    • Master Frontend
-                  </h1>
+                  <h1 className="text-white text-sm pl-14">• Frontend</h1>
                   <h1 className="text-white text-sm pl-14 pb-4">• Designer</h1>
                   <h1 className="text-white text-sm font-bold pl-8">
                     Connect :
