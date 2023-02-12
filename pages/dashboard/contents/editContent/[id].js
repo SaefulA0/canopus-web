@@ -234,6 +234,7 @@ export default function editContents({
                           })
                         }
                       >
+                        <option value={null}>-Pilih-</option>
                         <option value="Merkurius">Merkurius</option>
                         <option value="Venus">Venus</option>
                         <option value="Bumi">Bumi</option>
@@ -246,6 +247,7 @@ export default function editContents({
                         <option value="Pluto">Pluto</option>
                         <option value="Makemake">Makemake</option>
                         <option value="Haumea">Haumea</option>
+                        <option value="Matahari">Matahari</option>
                       </select>
                     </label>
                   </div>
