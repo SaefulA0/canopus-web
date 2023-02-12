@@ -19,7 +19,7 @@ export default function CarouselCard({ dataContentIndex }) {
         </div>
         {dataContentIndex.mainpicture ? (
           <img
-            src={`/imgs/halUnik/${dataContentIndex.mainpicture}`}
+            src={`/imgs/contents/${dataContentIndex.mainpicture}`}
             alt="bg"
             className="w-60 h-60 aspect-video object-cover rounded-lg"
           />
