@@ -55,7 +55,7 @@ export default function CarouselHome({ dataContent }) {
                 <div className="w-96 aspect-video rounded-lg bg-secondColor flex justify-center items-center">
                   {dataContent.mainpicture ? (
                     <img
-                      src="/imgs/halUnik/solarWind.jpg"
+                      src={`/imgs/contents/${dataContent.mainpicture}`}
                       alt="img content"
                       className="bg-cover bg-no-repeat rounded-lg aspect-video"
                     />
