@@ -151,13 +151,12 @@ export default function lihatBenda({
               }}
             >
               {dataContentShow.mainpicture ? (
-                <img
+                <Image
                   src={`/imgs/contents/${dataContentShow.mainpicture}`}
                   alt="bg"
                   layout="fill"
-                  onError="this.onerror=null;this.src='https://placeimg.com/200/300/animals';"
-                  // objectFit="cover"
-                  // priority={true}
+                  objectFit="cover"
+                  priority={true}
                   className="w-full h-full bg-center bg-cover bg-no-repeat"
                 />
               ) : (
@@ -395,7 +394,7 @@ export default function lihatBenda({
                   data-aos-duration="500"
                   className="flex justify-center mt-24 rounded-lg w-auto h-auto"
                 >
-                  {dataContentShow.mainpicture ? (
+                  {dataContentShow.pictures ? (
                     <img
                       src={`/imgs/gif/${dataContentShow.pictures}`}
                       alt="gif"
