@@ -250,6 +250,7 @@ export default function editContents({
                         <option value="Pluto">Pluto</option>
                         <option value="Makemake">Makemake</option>
                         <option value="Haumea">Haumea</option>
+                        <option value="Matahari">Matahari</option>
                       </select>
                     </label>
                   </div>
