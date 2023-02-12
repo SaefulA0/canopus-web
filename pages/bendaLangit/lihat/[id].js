@@ -403,11 +403,12 @@ export default function lihatBenda({
                     />
                   ) : (
                     <img
-                      src="/imgs/gif/earth.gif"
+                      src="/imgs/earth.gif"
                       alt="gif default"
                       width={276}
                       height={276}
                       priority={true}
+                      className="w-80 h-auto rounded-lg"
                     />
                   )}
                 </div>
