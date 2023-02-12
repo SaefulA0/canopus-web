@@ -31,8 +31,6 @@ export default function lihatBenda({
   idFav,
   token,
 }) {
-  const { data: session, status } = useSession();
-
   // memberikan efek pada setiap element
   useEffect(() => {
     AOS.init();
@@ -154,7 +152,7 @@ export default function lihatBenda({
             >
               {dataContentShow.mainpicture ? (
                 <Image
-                  src={`/imgs/planet/${dataContentShow.mainpicture}`}
+                  src={`/imgs/contents/${dataContentShow.mainpicture}`}
                   alt="bg"
                   layout="fill"
                   objectFit="cover"
@@ -394,14 +392,24 @@ export default function lihatBenda({
                 <div
                   data-aos="fade-left"
                   data-aos-duration="500"
-                  className="flex justify-center mt-24"
+                  className="flex justify-center mt-24 rounded-lg w-auto h-auto"
                 >
-                  <img
-                    alt="hero"
-                    width={276}
-                    height={276}
-                    src="/imgs/earth2.gif"
-                  />
+                  {dataContentShow.mainpicture ? (
+                    <img
+                      src={`/imgs/gif/${dataContentShow.picture}`}
+                      alt="gif"
+                      priority={true}
+                      className="w-80 h-auto rounded-lg"
+                    />
+                  ) : (
+                    <img
+                      src="/imgs/gif/earth.gif"
+                      alt="gif default"
+                      width={276}
+                      height={276}
+                      priority={true}
+                    />
+                  )}
                 </div>
               </div>
             </div>
